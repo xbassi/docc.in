@@ -1,0 +1,400 @@
+@import url('https://fonts.googleapis.com/css?family=Major+Mono+Display&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Roboto:300&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Asap&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
+
+body {
+	margin:0;
+	display: flex;
+	overflow: hidden;
+	height:100%;
+}
+
+/** {
+	border: 1px solid black;
+}*/
+
+#side{
+	float: left;
+	width:25%;
+	background-color: #FFFFFF;
+	display: flex;
+	flex-direction: column;
+	border-right:1px solid #CCC;
+}
+
+#center{
+	float: right;
+	width:75%;
+	display: flex;
+	flex-direction: column;
+	background-color: #FFF;
+}
+
+
+
+#sidehead1{
+	height: 50px;
+	background-color: #FFF;
+	
+	padding-left:30px;
+	padding-top:10px;
+
+	display: flex;
+	flex-direction: row;
+
+	border-bottom: 1px solid #CCC;
+}
+
+
+.sidehead1text{
+	color:#246EB9;
+	font-family: 'Major Mono Display', monospace;
+	font-size: 33px;
+	flex-grow: 1;
+}
+
+
+
+
+
+#nav{
+	display: flex;
+	flex-direction: column;
+
+	padding-top: 20px;
+}
+
+
+.tab{
+	display: flex;
+	flex-direction: row;
+
+	padding-left:30px;
+	padding-top:10px;
+	padding-bottom:10px;
+
+	text-align: left;
+	font-family: 'Asap', sans-serif;
+	font-size: 14px;
+	color:#666;
+
+	justify-content: flex-start;
+	align-items: center;
+}
+
+
+.tab:hover{
+	background-color: #CCC;
+	cursor: pointer;
+	border-right: 2px solid #777;
+	color:#000;
+}
+
+
+.selectedtab,.selectedtab:hover{
+	color:#246EB9;
+	background-color: rgba(36,110,185,1.0);
+	cursor: pointer;
+	/*border-right: 2px solid #246EB9;*/
+	color:#FFF;
+}
+
+.icondiv{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	color:;
+}
+
+.navtext{
+	padding-left:10px;
+}
+
+.sidebottom_container{
+	flex-grow: 1;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	align-items: center;
+}
+
+
+.sidebottom{
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: center;
+	/*padding:10px;*/
+	border-top:1px solid #CCC;
+}
+
+
+.sidebottom_link{
+	color: #666;
+	font-family: 'Asap', sans-serif;
+	font-size: 14px;
+	margin:10px;
+}
+
+#centerhead{
+	height: 60px;
+	border-bottom: 1px solid #CCC; 
+	background-color: #FFF;
+
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+
+
+}
+
+
+.centerheadtext{
+	color: #444;
+	font-family: 'Asap', sans-serif;
+	font-size: 22px;
+	text-align: left;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+
+	padding: 20px;
+}
+
+
+.centerheadtext2{
+	
+	color: #444;
+
+	font-family: 'Asap', sans-serif;
+	font-size: 18px;
+	text-align: left;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+
+	padding-left: 20px;
+
+	
+}
+
+
+.divider4{
+	align-self: center;
+	height: 45px;
+	border-left:1px solid #CCC;
+
+}
+
+#searchholder{
+	flex-grow: 1;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	justify-content: center;
+}
+
+#search{
+
+	height: 35px;
+	width: 300px;
+	margin-right: 30px;
+	border-radius: 0px;
+	/*border:none;*/
+	border:1px solid #CCC;
+	
+	font-family: 'Asap', sans-serif;
+	font-size: 13px;
+	text-align: left;
+
+	padding:10px;
+	/*background-color: #EEE;*/
+	color:#555;
+}
+
+
+#centercontent{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	/*overflow: scroll;*/
+	overflow-y: scroll;
+}
+
+#contenttab1{	
+	display: flex;
+	flex-direction: column;
+	width:50%;
+	padding-top:20px;
+}
+
+.newppt_header{
+	padding:8px;
+	/*border:1px solid #AAA;*/
+	margin:3px;
+	background: #DDD;
+	/*background-color: rgba(36,110,185,1.0);
+	color:#FFF;*/
+}
+
+.newppt_header_text{
+	font-family: 'Asap', sans-serif;
+	font-size: 16px;
+	text-align: left;
+}
+
+.newppt_selected_header{
+	padding:8px;
+	/*border:1px solid #AAA;	*/
+	margin:3px;
+	background: #DDD;
+	/*background-color: rgba(36,110,185,1.0);
+	color:#FFF;*/
+}
+
+.newppt_selected_header_text{
+	font-family: 'Asap', sans-serif;
+	font-size: 14px;
+	text-align: left;
+	
+}
+
+.newppt_selected_stone{
+	padding:5px;
+	border:1px solid #AAA;	
+	margin:5px 3px 5px 3px;	
+
+	display: flex;
+	flex-direction: column;
+
+}
+
+.newppt_selected_stone_text{
+	font-family: 'Asap', sans-serif;
+	font-size: 15px;
+	color:#333;
+	text-align: left;
+	flex-grow: 1;
+}
+
+.newppt_selected_stone_slides_container{
+	padding:5px;
+	border-top:1px solid #AAA;	
+	margin:3px;	
+
+	display: flex;
+	flex-direction: column;	
+}
+
+.newppt_selected_stone_slides_header{
+	font-family: 'Asap', sans-serif;
+	font-size: 13px;
+	padding:5px;
+	text-align: left;
+	color:#888;	
+}
+
+.newppt_selected_stone_slide{
+	display: flex;
+	flex-direction: column;		
+	border:1px solid #AAA;
+	margin:4px;
+	padding:5px;
+}
+
+.newppt_selected_stone_slides_mast{
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.newppt_selected_stone_slide_head{
+	display: flex;
+	flex-direction: row;	
+	align-items: center;
+}
+
+.newppt_selected_stone_slide_name{
+	flex-grow: 1;
+	font-family: 'Asap', sans-serif;
+	font-size: 14px;
+	color:#444;
+}
+
+.newppt_selected_stone_slide_expand{
+	padding:4px;
+}
+
+.newppt_selected_stone_icon{
+	padding:4px;	
+}
+
+.newppt_selected_stone_check{
+	padding:4px;	
+}
+
+.newppt_selected_stone_slide_check{
+	padding:4px;	
+}
+
+.newppt_selected_stone_slide_body{
+	margin-left:10px;
+	margin-right:10px;
+	margin-top:5px;
+	margin-bottom:5px;
+	padding:5px;
+	display: flex;
+	flex-direction: column;
+	border-top:1px solid #AAA;
+}
+
+.newppt_selected_stone_slide_text{
+	
+	padding:3px;
+	display: flex;
+	flex-direction: row;	
+	align-items: center;
+
+
+}
+
+.newppt_selected_stone_slide_text_key{
+
+	font-family: 'Asap', sans-serif;
+	font-size: 13px;
+	color:#777;	
+
+}
+
+.newppt_selected_stone_slide_text_value{
+	font-family: 'Asap', sans-serif;
+	font-size: 13px;
+	/*flex-grow: 1;*/
+	color:#444;	
+}
+
+.newppt_selected_stone_slide_text_edit{
+	color:#999;
+	margin-left:6px;
+	margin-right:3px;
+
+}
+
+.newppt_selected_stone_slide_text_check{
+	
+	margin-left:4px;
+	margin-right:2px;	
+}
+
+
+.pointer{
+	cursor: pointer;
+}
+
+
+
+

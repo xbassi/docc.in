@@ -1,0 +1,1281 @@
+<html>
+
+<head>
+
+		<title>The Quarry | Docc</title>
+
+		<link rel="stylesheet" type="text/css" href="../static/home.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+	</head>
+
+	<body>
+
+		<div id="side">
+
+			<div id="sidehead1">
+				<div class="sidehead1text">
+					Docc
+				</div>
+			</div>
+			
+			<div id="nav">
+				
+				<div class="tab selectedtab" id="tab1">
+					<div class="icondiv">
+						<i class="material-icons" style="font-size:26px">add_box</i>
+					</div>
+					<div class="navtext">
+						Create New PPT
+					</div>
+				</div>
+				<div class="tab" id="tab2">
+					<div class="icondiv">
+						<i class="material-icons" style="font-size:26px">list</i>
+					</div>
+					<div class="navtext">
+						All PPTs
+					</div>
+				</div>
+			</div>
+			<div class="sidebottom_container">
+				<div class="sidebottom">
+					<a href="#" class="sidebottom_link" >Logout</a>
+					<a href="#" class="sidebottom_link">FAQ</a>
+					<a href="#" class="sidebottom_link">Support</a>
+				</div>
+			</div>
+		</div>
+
+		<div id="center">
+			<div id="centerhead">
+				<div class="centerheadtext">
+					The Quarry
+				</div>
+				<div class="divider4">
+				</div>
+				<div class="centerheadtext2">
+					New PPT
+				</div>
+				<div id="searchholder">
+					<input type="text" placeholder="Search for a PPT or Client" id="search">
+				</div>
+			</div>
+
+			<div id="centercontent">
+
+				<div id="contenttab1" class="contenttab">
+					
+					<div class="newppt_header">
+						<div class="newppt_header_text">
+							List of Stones
+						</div>
+					</div>
+					<div class="newppt_selected_header">
+						<div class="newppt_selected_header_text">
+							Selected (5)
+						</div>
+					</div>
+					<!-- <div class="newppt_selected_stone">
+						<div class="newppt_selected_stone_slides_mast">
+							<div class="newppt_selected_stone_text">
+								Stone 1
+							</div>
+							<div class="newppt_selected_stone_icon pointer">
+								<i class="material-icons" style="font-size:26px">expand_more</i>
+							</div>
+						</div>
+						<div class="newppt_selected_stone_slides_container">
+							<div class="newppt_selected_stone_slides_header">
+								Select Slides
+							</div>
+							<div class="newppt_selected_stone_slide">
+								<div class="newppt_selected_stone_slide_head">
+									<div class="newppt_selected_stone_slide_check">
+										<input type="checkbox" name="slides" value="details">
+									</div>
+									<div class="newppt_selected_stone_slide_name">
+										Details
+									</div>
+									<div class="newppt_selected_stone_slide_expand pointer">
+										<i class="material-icons" style="font-size:20px">expand_more</i>
+									</div>
+										
+								</div>
+								<div class="newppt_selected_stone_slide_body">
+									<div class="newppt_selected_stone_slide_text">
+										<div class="newppt_selected_stone_slide_text_check">
+											<input type="checkbox" name="slides" value="name">
+										</div>
+										<div class="newppt_selected_stone_slide_text_key">
+											Name : &nbsp;
+										</div>
+										<div class="newppt_selected_stone_slide_text_value">
+											Stone 1
+										</div>
+										<div class="newppt_selected_stone_slide_text_edit pointer">
+											<i class="material-icons" style="font-size:13px">mode_edit</i>
+										</div>
+										
+									</div>
+
+									<div class="newppt_selected_stone_slide_text">
+										<div class="newppt_selected_stone_slide_text_check">
+											<input type="checkbox" name="slides" value="name">
+										</div>
+										<div class="newppt_selected_stone_slide_text_key">
+											Description : &nbsp;
+										</div>
+										<div class="newppt_selected_stone_slide_text_value">
+											This is the best stone in the market.
+										</div>
+										<div class="newppt_selected_stone_slide_text_edit pointer">
+											<i class="material-icons" style="font-size:13px">mode_edit</i>
+										</div>
+										
+									</div>
+
+									<div class="newppt_selected_stone_slide_text">
+										<div class="newppt_selected_stone_slide_text_check">
+											<input type="checkbox" name="slides" value="name">
+										</div>
+										<div class="newppt_selected_stone_slide_text_key">
+											Price : &nbsp;
+										</div>
+										<div class="newppt_selected_stone_slide_text_value">
+											Rs. 100 per sq.ft.
+										</div>
+										<div class="newppt_selected_stone_slide_text_edit pointer">
+											<i class="material-icons" style="font-size:13px">mode_edit</i>
+										</div>
+										
+									</div>
+
+									<div class="newppt_selected_stone_slide_text">
+										<div class="newppt_selected_stone_slide_text_check">
+											<input type="checkbox" name="slides" value="name">
+										</div>
+										<div class="newppt_selected_stone_slide_text_key">
+											Discounted Price : &nbsp;
+										</div>
+										<div class="newppt_selected_stone_slide_text_value">
+											Rs 50 per sq.ft.
+										</div>
+										<div class="newppt_selected_stone_slide_text_edit pointer">
+											<i class="material-icons" style="font-size:13px">mode_edit</i>
+										</div>
+										
+									</div>
+
+									<div class="newppt_selected_stone_slide_text">
+										<div class="newppt_selected_stone_slide_text_check">
+											<input type="checkbox" name="slides" value="name">
+										</div>
+										<div class="newppt_selected_stone_slide_text_key">
+											Quantity : &nbsp;
+										</div>
+										<div class="newppt_selected_stone_slide_text_value">
+											3000 sq.ft.
+										</div>
+										<div class="newppt_selected_stone_slide_text_edit pointer">
+											<i class="material-icons" style="font-size:13px">mode_edit</i>
+										</div>
+										
+									</div>
+
+									<div class="newppt_selected_stone_slide_text">
+										<div class="newppt_selected_stone_slide_text_check">
+											<input type="checkbox" name="slides" value="name">
+										</div>
+										<div class="newppt_selected_stone_slide_text_key">
+											Size : &nbsp;
+										</div>
+										<div class="newppt_selected_stone_slide_text_value">
+											300cm x 194cm
+										</div>
+										<div class="newppt_selected_stone_slide_text_edit pointer">
+											<i class="material-icons" style="font-size:13px">mode_edit</i>
+										</div>
+										
+									</div>
+
+									<div class="newppt_selected_stone_slide_text">
+										<div class="newppt_selected_stone_slide_text_check">
+											<input type="checkbox" name="slides" value="name">
+										</div>
+										<div class="newppt_selected_stone_slide_text_key">
+											Processing : &nbsp;
+										</div>
+										<div class="newppt_selected_stone_slide_text_value">
+											Italy
+										</div>
+										<div class="newppt_selected_stone_slide_text_edit pointer">
+											<i class="material-icons" style="font-size:13px">mode_edit</i>
+										</div>
+										
+									</div>
+
+									<div class="newppt_selected_stone_slide_text">
+										<div class="newppt_selected_stone_slide_text_check">
+											<input type="checkbox" name="slides" value="name">
+										</div>
+										<div class="newppt_selected_stone_slide_text_key">
+											Thickness : &nbsp;
+										</div>
+										<div class="newppt_selected_stone_slide_text_value">
+											20mm
+										</div>
+										<div class="newppt_selected_stone_slide_text_edit pointer">
+											<i class="material-icons" style="font-size:13px">mode_edit</i>
+										</div>
+										
+									</div>
+								</div>
+							</div>
+							<div class="newppt_selected_stone_slide">
+								<div class="newppt_selected_stone_slide_head">
+									<div class="newppt_selected_stone_slide_check">
+										<input type="checkbox" name="slides" value="application">
+									</div>
+									<div class="newppt_selected_stone_slide_name">
+										Application Image
+									</div>
+									<div class="newppt_selected_stone_slide_expand pointer">
+										<i class="material-icons" style="font-size:20px">expand_more</i>
+									</div>
+									
+								</div>
+							</div>
+							<div class="newppt_selected_stone_slide">
+								<div class="newppt_selected_stone_slide_head">
+									<div class="newppt_selected_stone_slide_check">
+										<input type="checkbox" name="slides" value="bookmatch">
+									</div>
+									<div class="newppt_selected_stone_slide_name">
+										Book Match Image
+									</div>
+									<div class="newppt_selected_stone_slide_expand pointer">
+										<i class="material-icons" style="font-size:20px">expand_more</i>
+									</div>
+									
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="newppt_selected_stone">
+						<div class="newppt_selected_stone_slides_mast">
+							<div class="newppt_selected_stone_text">
+								Stone 2
+							</div>
+							<div class="newppt_selected_stone_icon pointer">
+								<i class="material-icons" style="font-size:26px">expand_more</i>
+							</div>
+						</div>
+						<div class="newppt_selected_stone_slides_container">
+							<div class="newppt_selected_stone_slides_header">
+								Select Slides
+							</div>
+							<div class="newppt_selected_stone_slide">
+								<div class="newppt_selected_stone_slide_head">
+									<div class="newppt_selected_stone_slide_check">
+										<input type="checkbox" name="slides" value="details">
+									</div>
+									<div class="newppt_selected_stone_slide_name">
+										Details
+									</div>
+									<div class="newppt_selected_stone_slide_expand pointer">
+										<i class="material-icons" style="font-size:20px">expand_more</i>
+									</div>
+										
+								</div>
+								<div class="newppt_selected_stone_slide_body">
+									<div class="newppt_selected_stone_slide_text">
+										<div class="newppt_selected_stone_slide_text_check">
+											<input type="checkbox" name="slides" value="name">
+										</div>
+										<div class="newppt_selected_stone_slide_text_key">
+											Name : &nbsp;
+										</div>
+										<div class="newppt_selected_stone_slide_text_value">
+											Stone 1
+										</div>
+										<div class="newppt_selected_stone_slide_text_edit pointer">
+											<i class="material-icons" style="font-size:13px">mode_edit</i>
+										</div>
+										
+									</div>
+
+									<div class="newppt_selected_stone_slide_text">
+										<div class="newppt_selected_stone_slide_text_check">
+											<input type="checkbox" name="slides" value="name">
+										</div>
+										<div class="newppt_selected_stone_slide_text_key">
+											Description : &nbsp;
+										</div>
+										<div class="newppt_selected_stone_slide_text_value">
+											This is the best stone in the market.
+										</div>
+										<div class="newppt_selected_stone_slide_text_edit pointer">
+											<i class="material-icons" style="font-size:13px">mode_edit</i>
+										</div>
+										
+									</div>
+
+									<div class="newppt_selected_stone_slide_text">
+										<div class="newppt_selected_stone_slide_text_check">
+											<input type="checkbox" name="slides" value="name">
+										</div>
+										<div class="newppt_selected_stone_slide_text_key">
+											Price : &nbsp;
+										</div>
+										<div class="newppt_selected_stone_slide_text_value">
+											Rs. 100 per sq.ft.
+										</div>
+										<div class="newppt_selected_stone_slide_text_edit pointer">
+											<i class="material-icons" style="font-size:13px">mode_edit</i>
+										</div>
+										
+									</div>
+
+									<div class="newppt_selected_stone_slide_text">
+										<div class="newppt_selected_stone_slide_text_check">
+											<input type="checkbox" name="slides" value="name">
+										</div>
+										<div class="newppt_selected_stone_slide_text_key">
+											Discounted Price : &nbsp;
+										</div>
+										<div class="newppt_selected_stone_slide_text_value">
+											Rs 50 per sq.ft.
+										</div>
+										<div class="newppt_selected_stone_slide_text_edit pointer">
+											<i class="material-icons" style="font-size:13px">mode_edit</i>
+										</div>
+										
+									</div>
+
+									<div class="newppt_selected_stone_slide_text">
+										<div class="newppt_selected_stone_slide_text_check">
+											<input type="checkbox" name="slides" value="name">
+										</div>
+										<div class="newppt_selected_stone_slide_text_key">
+											Quantity : &nbsp;
+										</div>
+										<div class="newppt_selected_stone_slide_text_value">
+											3000 sq.ft.
+										</div>
+										<div class="newppt_selected_stone_slide_text_edit pointer">
+											<i class="material-icons" style="font-size:13px">mode_edit</i>
+										</div>
+										
+									</div>
+
+									<div class="newppt_selected_stone_slide_text">
+										<div class="newppt_selected_stone_slide_text_check">
+											<input type="checkbox" name="slides" value="name">
+										</div>
+										<div class="newppt_selected_stone_slide_text_key">
+											Size : &nbsp;
+										</div>
+										<div class="newppt_selected_stone_slide_text_value">
+											300cm x 194cm
+										</div>
+										<div class="newppt_selected_stone_slide_text_edit pointer">
+											<i class="material-icons" style="font-size:13px">mode_edit</i>
+										</div>
+										
+									</div>
+
+									<div class="newppt_selected_stone_slide_text">
+										<div class="newppt_selected_stone_slide_text_check">
+											<input type="checkbox" name="slides" value="name">
+										</div>
+										<div class="newppt_selected_stone_slide_text_key">
+											Processing : &nbsp;
+										</div>
+										<div class="newppt_selected_stone_slide_text_value">
+											Italy
+										</div>
+										<div class="newppt_selected_stone_slide_text_edit pointer">
+											<i class="material-icons" style="font-size:13px">mode_edit</i>
+										</div>
+										
+									</div>
+
+									<div class="newppt_selected_stone_slide_text">
+										<div class="newppt_selected_stone_slide_text_check">
+											<input type="checkbox" name="slides" value="name">
+										</div>
+										<div class="newppt_selected_stone_slide_text_key">
+											Thickness : &nbsp;
+										</div>
+										<div class="newppt_selected_stone_slide_text_value">
+											20mm
+										</div>
+										<div class="newppt_selected_stone_slide_text_edit pointer">
+											<i class="material-icons" style="font-size:13px">mode_edit</i>
+										</div>
+										
+									</div>
+								</div>
+							</div>
+							<div class="newppt_selected_stone_slide">
+								<div class="newppt_selected_stone_slide_head">
+									<div class="newppt_selected_stone_slide_check">
+										<input type="checkbox" name="slides" value="application">
+									</div>
+									<div class="newppt_selected_stone_slide_name">
+										Application Image
+									</div>
+									<div class="newppt_selected_stone_slide_expand pointer">
+										<i class="material-icons" style="font-size:20px">expand_more</i>
+									</div>
+									
+								</div>
+							</div>
+							<div class="newppt_selected_stone_slide">
+								<div class="newppt_selected_stone_slide_head">
+									<div class="newppt_selected_stone_slide_check">
+										<input type="checkbox" name="slides" value="bookmatch">
+									</div>
+									<div class="newppt_selected_stone_slide_name">
+										Book Match Image
+									</div>
+									<div class="newppt_selected_stone_slide_expand pointer">
+										<i class="material-icons" style="font-size:20px">expand_more</i>
+									</div>
+									
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="newppt_selected_stone">
+						<div class="newppt_selected_stone_slides_mast">
+							<div class="newppt_selected_stone_text">
+								Stone 3
+							</div>
+							<div class="newppt_selected_stone_icon pointer">
+								<i class="material-icons" style="font-size:26px">expand_more</i>
+							</div>
+						</div>
+						<div class="newppt_selected_stone_slides_container">
+							<div class="newppt_selected_stone_slides_header">
+								Select Slides
+							</div>
+							<div class="newppt_selected_stone_slide">
+								<div class="newppt_selected_stone_slide_head">
+									<div class="newppt_selected_stone_slide_check">
+										<input type="checkbox" name="slides" value="details">
+									</div>
+									<div class="newppt_selected_stone_slide_name">
+										Details
+									</div>
+									<div class="newppt_selected_stone_slide_expand pointer">
+										<i class="material-icons" style="font-size:20px">expand_more</i>
+									</div>
+										
+								</div>
+								<div class="newppt_selected_stone_slide_body">
+									<div class="newppt_selected_stone_slide_text">
+										<div class="newppt_selected_stone_slide_text_check">
+											<input type="checkbox" name="slides" value="name">
+										</div>
+										<div class="newppt_selected_stone_slide_text_key">
+											Name : &nbsp;
+										</div>
+										<div class="newppt_selected_stone_slide_text_value">
+											Stone 1
+										</div>
+										<div class="newppt_selected_stone_slide_text_edit pointer">
+											<i class="material-icons" style="font-size:13px">mode_edit</i>
+										</div>
+										
+									</div>
+
+									<div class="newppt_selected_stone_slide_text">
+										<div class="newppt_selected_stone_slide_text_check">
+											<input type="checkbox" name="slides" value="name">
+										</div>
+										<div class="newppt_selected_stone_slide_text_key">
+											Description : &nbsp;
+										</div>
+										<div class="newppt_selected_stone_slide_text_value">
+											This is the best stone in the market.
+										</div>
+										<div class="newppt_selected_stone_slide_text_edit pointer">
+											<i class="material-icons" style="font-size:13px">mode_edit</i>
+										</div>
+										
+									</div>
+
+									<div class="newppt_selected_stone_slide_text">
+										<div class="newppt_selected_stone_slide_text_check">
+											<input type="checkbox" name="slides" value="name">
+										</div>
+										<div class="newppt_selected_stone_slide_text_key">
+											Price : &nbsp;
+										</div>
+										<div class="newppt_selected_stone_slide_text_value">
+											Rs. 100 per sq.ft.
+										</div>
+										<div class="newppt_selected_stone_slide_text_edit pointer">
+											<i class="material-icons" style="font-size:13px">mode_edit</i>
+										</div>
+										
+									</div>
+
+									<div class="newppt_selected_stone_slide_text">
+										<div class="newppt_selected_stone_slide_text_check">
+											<input type="checkbox" name="slides" value="name">
+										</div>
+										<div class="newppt_selected_stone_slide_text_key">
+											Discounted Price : &nbsp;
+										</div>
+										<div class="newppt_selected_stone_slide_text_value">
+											Rs 50 per sq.ft.
+										</div>
+										<div class="newppt_selected_stone_slide_text_edit pointer">
+											<i class="material-icons" style="font-size:13px">mode_edit</i>
+										</div>
+										
+									</div>
+
+									<div class="newppt_selected_stone_slide_text">
+										<div class="newppt_selected_stone_slide_text_check">
+											<input type="checkbox" name="slides" value="name">
+										</div>
+										<div class="newppt_selected_stone_slide_text_key">
+											Quantity : &nbsp;
+										</div>
+										<div class="newppt_selected_stone_slide_text_value">
+											3000 sq.ft.
+										</div>
+										<div class="newppt_selected_stone_slide_text_edit pointer">
+											<i class="material-icons" style="font-size:13px">mode_edit</i>
+										</div>
+										
+									</div>
+
+									<div class="newppt_selected_stone_slide_text">
+										<div class="newppt_selected_stone_slide_text_check">
+											<input type="checkbox" name="slides" value="name">
+										</div>
+										<div class="newppt_selected_stone_slide_text_key">
+											Size : &nbsp;
+										</div>
+										<div class="newppt_selected_stone_slide_text_value">
+											300cm x 194cm
+										</div>
+										<div class="newppt_selected_stone_slide_text_edit pointer">
+											<i class="material-icons" style="font-size:13px">mode_edit</i>
+										</div>
+										
+									</div>
+
+									<div class="newppt_selected_stone_slide_text">
+										<div class="newppt_selected_stone_slide_text_check">
+											<input type="checkbox" name="slides" value="name">
+										</div>
+										<div class="newppt_selected_stone_slide_text_key">
+											Processing : &nbsp;
+										</div>
+										<div class="newppt_selected_stone_slide_text_value">
+											Italy
+										</div>
+										<div class="newppt_selected_stone_slide_text_edit pointer">
+											<i class="material-icons" style="font-size:13px">mode_edit</i>
+										</div>
+										
+									</div>
+
+									<div class="newppt_selected_stone_slide_text">
+										<div class="newppt_selected_stone_slide_text_check">
+											<input type="checkbox" name="slides" value="name">
+										</div>
+										<div class="newppt_selected_stone_slide_text_key">
+											Thickness : &nbsp;
+										</div>
+										<div class="newppt_selected_stone_slide_text_value">
+											20mm
+										</div>
+										<div class="newppt_selected_stone_slide_text_edit pointer">
+											<i class="material-icons" style="font-size:13px">mode_edit</i>
+										</div>
+										
+									</div>
+								</div>
+							</div>
+							<div class="newppt_selected_stone_slide">
+								<div class="newppt_selected_stone_slide_head">
+									<div class="newppt_selected_stone_slide_check">
+										<input type="checkbox" name="slides" value="application">
+									</div>
+									<div class="newppt_selected_stone_slide_name">
+										Application Image
+									</div>
+									<div class="newppt_selected_stone_slide_expand pointer">
+										<i class="material-icons" style="font-size:20px">expand_more</i>
+									</div>
+									
+								</div>
+							</div>
+							<div class="newppt_selected_stone_slide">
+								<div class="newppt_selected_stone_slide_head">
+									<div class="newppt_selected_stone_slide_check">
+										<input type="checkbox" name="slides" value="bookmatch">
+									</div>
+									<div class="newppt_selected_stone_slide_name">
+										Book Match Image
+									</div>
+									<div class="newppt_selected_stone_slide_expand pointer">
+										<i class="material-icons" style="font-size:20px">expand_more</i>
+									</div>
+									
+								</div>
+							</div>
+						</div>
+					</div> -->
+
+					<div class="newppt_selected_header" id="allstones_header">
+						<div class="newppt_selected_header_text">
+							All Stones (200)
+						</div>
+					</div>
+
+					<div class="newppt_selected_stone unselected" id="s1u">
+						<div class="newppt_selected_stone_slides_mast">
+							<div class="newppt_selected_stone_text">
+								Stone 1
+							</div>
+							<div class="newppt_selected_stone_icon pointer stone_expander">
+								<i class="material-icons" style="font-size:26px">expand_more</i>
+							</div>
+							<div class="newppt_selected_stone_check pointer stone_selector" >
+								<input type="checkbox" name="slides" value="details" class="stone_selector_input" id="s1">
+							</div>
+						</div>
+						<div class="newppt_selected_stone_slides_container">
+							<div class="newppt_selected_stone_slides_header">
+								Select Slides
+							</div>
+							<div class="newppt_selected_stone_slide">
+								<div class="newppt_selected_stone_slide_head">
+									<div class="newppt_selected_stone_slide_check">
+										<input type="checkbox" name="slides" value="details">
+									</div>
+									<div class="newppt_selected_stone_slide_name">
+										Details
+									</div>
+									<div class="newppt_selected_stone_slide_expand pointer">
+										<i class="material-icons" style="font-size:20px">expand_more</i>
+									</div>
+										
+								</div>
+								<div class="newppt_selected_stone_slide_body">
+									<div class="newppt_selected_stone_slide_text">
+										<div class="newppt_selected_stone_slide_text_check">
+											<input type="checkbox" name="slides" value="name">
+										</div>
+										<div class="newppt_selected_stone_slide_text_key">
+											Name : &nbsp;
+										</div>
+										<div class="newppt_selected_stone_slide_text_value">
+											Stone 1
+										</div>
+										<div class="newppt_selected_stone_slide_text_edit pointer">
+											<i class="material-icons" style="font-size:13px">mode_edit</i>
+										</div>
+										
+									</div>
+
+									<div class="newppt_selected_stone_slide_text">
+										<div class="newppt_selected_stone_slide_text_check">
+											<input type="checkbox" name="slides" value="name">
+										</div>
+										<div class="newppt_selected_stone_slide_text_key">
+											Description : &nbsp;
+										</div>
+										<div class="newppt_selected_stone_slide_text_value">
+											This is the best stone in the market.
+										</div>
+										<div class="newppt_selected_stone_slide_text_edit pointer">
+											<i class="material-icons" style="font-size:13px">mode_edit</i>
+										</div>
+										
+									</div>
+
+									<div class="newppt_selected_stone_slide_text">
+										<div class="newppt_selected_stone_slide_text_check">
+											<input type="checkbox" name="slides" value="name">
+										</div>
+										<div class="newppt_selected_stone_slide_text_key">
+											Price : &nbsp;
+										</div>
+										<div class="newppt_selected_stone_slide_text_value">
+											Rs. 100 per sq.ft.
+										</div>
+										<div class="newppt_selected_stone_slide_text_edit pointer">
+											<i class="material-icons" style="font-size:13px">mode_edit</i>
+										</div>
+										
+									</div>
+
+									<div class="newppt_selected_stone_slide_text">
+										<div class="newppt_selected_stone_slide_text_check">
+											<input type="checkbox" name="slides" value="name">
+										</div>
+										<div class="newppt_selected_stone_slide_text_key">
+											Discounted Price : &nbsp;
+										</div>
+										<div class="newppt_selected_stone_slide_text_value">
+											Rs 50 per sq.ft.
+										</div>
+										<div class="newppt_selected_stone_slide_text_edit pointer">
+											<i class="material-icons" style="font-size:13px">mode_edit</i>
+										</div>
+										
+									</div>
+
+									<div class="newppt_selected_stone_slide_text">
+										<div class="newppt_selected_stone_slide_text_check">
+											<input type="checkbox" name="slides" value="name">
+										</div>
+										<div class="newppt_selected_stone_slide_text_key">
+											Quantity : &nbsp;
+										</div>
+										<div class="newppt_selected_stone_slide_text_value">
+											3000 sq.ft.
+										</div>
+										<div class="newppt_selected_stone_slide_text_edit pointer">
+											<i class="material-icons" style="font-size:13px">mode_edit</i>
+										</div>
+										
+									</div>
+
+									<div class="newppt_selected_stone_slide_text">
+										<div class="newppt_selected_stone_slide_text_check">
+											<input type="checkbox" name="slides" value="name">
+										</div>
+										<div class="newppt_selected_stone_slide_text_key">
+											Size : &nbsp;
+										</div>
+										<div class="newppt_selected_stone_slide_text_value">
+											300cm x 194cm
+										</div>
+										<div class="newppt_selected_stone_slide_text_edit pointer">
+											<i class="material-icons" style="font-size:13px">mode_edit</i>
+										</div>
+										
+									</div>
+
+									<div class="newppt_selected_stone_slide_text">
+										<div class="newppt_selected_stone_slide_text_check">
+											<input type="checkbox" name="slides" value="name">
+										</div>
+										<div class="newppt_selected_stone_slide_text_key">
+											Processing : &nbsp;
+										</div>
+										<div class="newppt_selected_stone_slide_text_value">
+											Italy
+										</div>
+										<div class="newppt_selected_stone_slide_text_edit pointer">
+											<i class="material-icons" style="font-size:13px">mode_edit</i>
+										</div>
+										
+									</div>
+
+									<div class="newppt_selected_stone_slide_text">
+										<div class="newppt_selected_stone_slide_text_check">
+											<input type="checkbox" name="slides" value="name">
+										</div>
+										<div class="newppt_selected_stone_slide_text_key">
+											Thickness : &nbsp;
+										</div>
+										<div class="newppt_selected_stone_slide_text_value">
+											20mm
+										</div>
+										<div class="newppt_selected_stone_slide_text_edit pointer">
+											<i class="material-icons" style="font-size:13px">mode_edit</i>
+										</div>
+										
+									</div>
+								</div>
+							</div>
+							<div class="newppt_selected_stone_slide">
+								<div class="newppt_selected_stone_slide_head">
+									<div class="newppt_selected_stone_slide_check">
+										<input type="checkbox" name="slides" value="application">
+									</div>
+									<div class="newppt_selected_stone_slide_name">
+										Application Image
+									</div>
+									<div class="newppt_selected_stone_slide_expand pointer">
+										<i class="material-icons" style="font-size:20px">expand_more</i>
+									</div>
+									
+								</div>
+							</div>
+							<div class="newppt_selected_stone_slide">
+								<div class="newppt_selected_stone_slide_head">
+									<div class="newppt_selected_stone_slide_check">
+										<input type="checkbox" name="slides" value="bookmatch">
+									</div>
+									<div class="newppt_selected_stone_slide_name">
+										Book Match Image
+									</div>
+									<div class="newppt_selected_stone_slide_expand pointer">
+										<i class="material-icons" style="font-size:20px">expand_more</i>
+									</div>
+									
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="newppt_selected_stone unselected" id="s2u">
+						<div class="newppt_selected_stone_slides_mast">
+							<div class="newppt_selected_stone_text">
+								Stone 2
+							</div>
+							<div class="newppt_selected_stone_icon pointer stone_expander">
+								<i class="material-icons" style="font-size:26px">expand_more</i>
+							</div>
+							<div class="newppt_selected_stone_check pointer stone_selector" >
+								<input type="checkbox" name="slides" value="details" class="stone_selector_input" id="s2">
+							</div>
+						</div>
+						<div class="newppt_selected_stone_slides_container">
+							<div class="newppt_selected_stone_slides_header">
+								Select Slides
+							</div>
+							<div class="newppt_selected_stone_slide">
+								<div class="newppt_selected_stone_slide_head">
+									<div class="newppt_selected_stone_slide_check">
+										<input type="checkbox" name="slides" value="details">
+									</div>
+									<div class="newppt_selected_stone_slide_name">
+										Details
+									</div>
+									<div class="newppt_selected_stone_slide_expand pointer">
+										<i class="material-icons" style="font-size:20px">expand_more</i>
+									</div>
+										
+								</div>
+								<div class="newppt_selected_stone_slide_body">
+									<div class="newppt_selected_stone_slide_text">
+										<div class="newppt_selected_stone_slide_text_check">
+											<input type="checkbox" name="slides" value="name">
+										</div>
+										<div class="newppt_selected_stone_slide_text_key">
+											Name : &nbsp;
+										</div>
+										<div class="newppt_selected_stone_slide_text_value">
+											Stone 1
+										</div>
+										<div class="newppt_selected_stone_slide_text_edit pointer">
+											<i class="material-icons" style="font-size:13px">mode_edit</i>
+										</div>
+										
+									</div>
+
+									<div class="newppt_selected_stone_slide_text">
+										<div class="newppt_selected_stone_slide_text_check">
+											<input type="checkbox" name="slides" value="name">
+										</div>
+										<div class="newppt_selected_stone_slide_text_key">
+											Description : &nbsp;
+										</div>
+										<div class="newppt_selected_stone_slide_text_value">
+											This is the best stone in the market.
+										</div>
+										<div class="newppt_selected_stone_slide_text_edit pointer">
+											<i class="material-icons" style="font-size:13px">mode_edit</i>
+										</div>
+										
+									</div>
+
+									<div class="newppt_selected_stone_slide_text">
+										<div class="newppt_selected_stone_slide_text_check">
+											<input type="checkbox" name="slides" value="name">
+										</div>
+										<div class="newppt_selected_stone_slide_text_key">
+											Price : &nbsp;
+										</div>
+										<div class="newppt_selected_stone_slide_text_value">
+											Rs. 100 per sq.ft.
+										</div>
+										<div class="newppt_selected_stone_slide_text_edit pointer">
+											<i class="material-icons" style="font-size:13px">mode_edit</i>
+										</div>
+										
+									</div>
+
+									<div class="newppt_selected_stone_slide_text">
+										<div class="newppt_selected_stone_slide_text_check">
+											<input type="checkbox" name="slides" value="name">
+										</div>
+										<div class="newppt_selected_stone_slide_text_key">
+											Discounted Price : &nbsp;
+										</div>
+										<div class="newppt_selected_stone_slide_text_value">
+											Rs 50 per sq.ft.
+										</div>
+										<div class="newppt_selected_stone_slide_text_edit pointer">
+											<i class="material-icons" style="font-size:13px">mode_edit</i>
+										</div>
+										
+									</div>
+
+									<div class="newppt_selected_stone_slide_text">
+										<div class="newppt_selected_stone_slide_text_check">
+											<input type="checkbox" name="slides" value="name">
+										</div>
+										<div class="newppt_selected_stone_slide_text_key">
+											Quantity : &nbsp;
+										</div>
+										<div class="newppt_selected_stone_slide_text_value">
+											3000 sq.ft.
+										</div>
+										<div class="newppt_selected_stone_slide_text_edit pointer">
+											<i class="material-icons" style="font-size:13px">mode_edit</i>
+										</div>
+										
+									</div>
+
+									<div class="newppt_selected_stone_slide_text">
+										<div class="newppt_selected_stone_slide_text_check">
+											<input type="checkbox" name="slides" value="name">
+										</div>
+										<div class="newppt_selected_stone_slide_text_key">
+											Size : &nbsp;
+										</div>
+										<div class="newppt_selected_stone_slide_text_value">
+											300cm x 194cm
+										</div>
+										<div class="newppt_selected_stone_slide_text_edit pointer">
+											<i class="material-icons" style="font-size:13px">mode_edit</i>
+										</div>
+										
+									</div>
+
+									<div class="newppt_selected_stone_slide_text">
+										<div class="newppt_selected_stone_slide_text_check">
+											<input type="checkbox" name="slides" value="name">
+										</div>
+										<div class="newppt_selected_stone_slide_text_key">
+											Processing : &nbsp;
+										</div>
+										<div class="newppt_selected_stone_slide_text_value">
+											Italy
+										</div>
+										<div class="newppt_selected_stone_slide_text_edit pointer">
+											<i class="material-icons" style="font-size:13px">mode_edit</i>
+										</div>
+										
+									</div>
+
+									<div class="newppt_selected_stone_slide_text">
+										<div class="newppt_selected_stone_slide_text_check">
+											<input type="checkbox" name="slides" value="name">
+										</div>
+										<div class="newppt_selected_stone_slide_text_key">
+											Thickness : &nbsp;
+										</div>
+										<div class="newppt_selected_stone_slide_text_value">
+											20mm
+										</div>
+										<div class="newppt_selected_stone_slide_text_edit pointer">
+											<i class="material-icons" style="font-size:13px">mode_edit</i>
+										</div>
+										
+									</div>
+								</div>
+							</div>
+							<div class="newppt_selected_stone_slide">
+								<div class="newppt_selected_stone_slide_head">
+									<div class="newppt_selected_stone_slide_check">
+										<input type="checkbox" name="slides" value="application">
+									</div>
+									<div class="newppt_selected_stone_slide_name">
+										Application Image
+									</div>
+									<div class="newppt_selected_stone_slide_expand pointer">
+										<i class="material-icons" style="font-size:20px">expand_more</i>
+									</div>
+									
+								</div>
+							</div>
+							<div class="newppt_selected_stone_slide">
+								<div class="newppt_selected_stone_slide_head">
+									<div class="newppt_selected_stone_slide_check">
+										<input type="checkbox" name="slides" value="bookmatch">
+									</div>
+									<div class="newppt_selected_stone_slide_name">
+										Book Match Image
+									</div>
+									<div class="newppt_selected_stone_slide_expand pointer">
+										<i class="material-icons" style="font-size:20px">expand_more</i>
+									</div>
+									
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="newppt_selected_stone unselected" id="s3u">
+						<div class="newppt_selected_stone_slides_mast">
+							<div class="newppt_selected_stone_text">
+								Stone 3
+							</div>
+							<div class="newppt_selected_stone_icon pointer stone_expander">
+								<i class="material-icons" style="font-size:26px">expand_more</i>
+							</div>
+							<div class="newppt_selected_stone_check pointer stone_selector" >
+								<input type="checkbox" name="slides" value="details" class="stone_selector_input" id="s3">
+							</div>
+						</div>
+						<div class="newppt_selected_stone_slides_container">
+							<div class="newppt_selected_stone_slides_header">
+								Select Slides
+							</div>
+							<div class="newppt_selected_stone_slide">
+								<div class="newppt_selected_stone_slide_head">
+									<div class="newppt_selected_stone_slide_check">
+										<input type="checkbox" name="slides" value="details">
+									</div>
+									<div class="newppt_selected_stone_slide_name">
+										Details
+									</div>
+									<div class="newppt_selected_stone_slide_expand pointer">
+										<i class="material-icons" style="font-size:20px">expand_more</i>
+									</div>
+										
+								</div>
+								<div class="newppt_selected_stone_slide_body">
+									<div class="newppt_selected_stone_slide_text">
+										<div class="newppt_selected_stone_slide_text_check">
+											<input type="checkbox" name="slides" value="name">
+										</div>
+										<div class="newppt_selected_stone_slide_text_key">
+											Name : &nbsp;
+										</div>
+										<div class="newppt_selected_stone_slide_text_value">
+											Stone 1
+										</div>
+										<div class="newppt_selected_stone_slide_text_edit pointer">
+											<i class="material-icons" style="font-size:13px">mode_edit</i>
+										</div>
+										
+									</div>
+
+									<div class="newppt_selected_stone_slide_text">
+										<div class="newppt_selected_stone_slide_text_check">
+											<input type="checkbox" name="slides" value="name">
+										</div>
+										<div class="newppt_selected_stone_slide_text_key">
+											Description : &nbsp;
+										</div>
+										<div class="newppt_selected_stone_slide_text_value">
+											This is the best stone in the market.
+										</div>
+										<div class="newppt_selected_stone_slide_text_edit pointer">
+											<i class="material-icons" style="font-size:13px">mode_edit</i>
+										</div>
+										
+									</div>
+
+									<div class="newppt_selected_stone_slide_text">
+										<div class="newppt_selected_stone_slide_text_check">
+											<input type="checkbox" name="slides" value="name">
+										</div>
+										<div class="newppt_selected_stone_slide_text_key">
+											Price : &nbsp;
+										</div>
+										<div class="newppt_selected_stone_slide_text_value">
+											Rs. 100 per sq.ft.
+										</div>
+										<div class="newppt_selected_stone_slide_text_edit pointer">
+											<i class="material-icons" style="font-size:13px">mode_edit</i>
+										</div>
+										
+									</div>
+
+									<div class="newppt_selected_stone_slide_text">
+										<div class="newppt_selected_stone_slide_text_check">
+											<input type="checkbox" name="slides" value="name">
+										</div>
+										<div class="newppt_selected_stone_slide_text_key">
+											Discounted Price : &nbsp;
+										</div>
+										<div class="newppt_selected_stone_slide_text_value">
+											Rs 50 per sq.ft.
+										</div>
+										<div class="newppt_selected_stone_slide_text_edit pointer">
+											<i class="material-icons" style="font-size:13px">mode_edit</i>
+										</div>
+										
+									</div>
+
+									<div class="newppt_selected_stone_slide_text">
+										<div class="newppt_selected_stone_slide_text_check">
+											<input type="checkbox" name="slides" value="name">
+										</div>
+										<div class="newppt_selected_stone_slide_text_key">
+											Quantity : &nbsp;
+										</div>
+										<div class="newppt_selected_stone_slide_text_value">
+											3000 sq.ft.
+										</div>
+										<div class="newppt_selected_stone_slide_text_edit pointer">
+											<i class="material-icons" style="font-size:13px">mode_edit</i>
+										</div>
+										
+									</div>
+
+									<div class="newppt_selected_stone_slide_text">
+										<div class="newppt_selected_stone_slide_text_check">
+											<input type="checkbox" name="slides" value="name">
+										</div>
+										<div class="newppt_selected_stone_slide_text_key">
+											Size : &nbsp;
+										</div>
+										<div class="newppt_selected_stone_slide_text_value">
+											300cm x 194cm
+										</div>
+										<div class="newppt_selected_stone_slide_text_edit pointer">
+											<i class="material-icons" style="font-size:13px">mode_edit</i>
+										</div>
+										
+									</div>
+
+									<div class="newppt_selected_stone_slide_text">
+										<div class="newppt_selected_stone_slide_text_check">
+											<input type="checkbox" name="slides" value="name">
+										</div>
+										<div class="newppt_selected_stone_slide_text_key">
+											Processing : &nbsp;
+										</div>
+										<div class="newppt_selected_stone_slide_text_value">
+											Italy
+										</div>
+										<div class="newppt_selected_stone_slide_text_edit pointer">
+											<i class="material-icons" style="font-size:13px">mode_edit</i>
+										</div>
+										
+									</div>
+
+									<div class="newppt_selected_stone_slide_text">
+										<div class="newppt_selected_stone_slide_text_check">
+											<input type="checkbox" name="slides" value="name">
+										</div>
+										<div class="newppt_selected_stone_slide_text_key">
+											Thickness : &nbsp;
+										</div>
+										<div class="newppt_selected_stone_slide_text_value">
+											20mm
+										</div>
+										<div class="newppt_selected_stone_slide_text_edit pointer">
+											<i class="material-icons" style="font-size:13px">mode_edit</i>
+										</div>
+										
+									</div>
+								</div>
+							</div>
+							<div class="newppt_selected_stone_slide">
+								<div class="newppt_selected_stone_slide_head">
+									<div class="newppt_selected_stone_slide_check">
+										<input type="checkbox" name="slides" value="application">
+									</div>
+									<div class="newppt_selected_stone_slide_name">
+										Application Image
+									</div>
+									<div class="newppt_selected_stone_slide_expand pointer">
+										<i class="material-icons" style="font-size:20px">expand_more</i>
+									</div>
+									
+								</div>
+							</div>
+							<div class="newppt_selected_stone_slide">
+								<div class="newppt_selected_stone_slide_head">
+									<div class="newppt_selected_stone_slide_check">
+										<input type="checkbox" name="slides" value="bookmatch">
+									</div>
+									<div class="newppt_selected_stone_slide_name">
+										Book Match Image
+									</div>
+									<div class="newppt_selected_stone_slide_expand pointer">
+										<i class="material-icons" style="font-size:20px">expand_more</i>
+									</div>
+									
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+
+		<script type="text/javascript">
+			
+			$(".newppt_selected_stone_icon").parent().next().hide()
+			$(".newppt_selected_stone_slide_expand").parent().next().hide()
+
+			$(".stone_expander").hide()
+
+			$(".stone_selector_input").click(function(){
+
+				var id = $(this).attr("id")+"u"
+				var newid =  $(this).attr("id")+"s"
+
+				if($(this).is(":checked")) 
+				{
+					var element = $("#" +id).clone()
+					element.removeAttr("id")
+					element.removeClass("unselected")
+					element.attr("id",newid)
+					element
+						.children().eq(0)
+						.children(".stone_expander").eq(0)
+						.show()
+					
+					element
+						.children().eq(0)
+						.children(".stone_expander").eq(0)
+						.removeClass(".stone_expander")
+						
+					element
+						.children().eq(0)
+						.children(".stone_selector").eq(0)
+						.hide()
+					element.insertBefore("#allstones_header")
+					$(".newppt_selected_stone_icon").click(function(){
+						$(this).parent().next().toggle()
+										
+					})
+
+					$(".newppt_selected_stone_slide_expand").click(function(){
+						$(this).parent().next().toggle()				
+					})
+				}
+				else{
+					$("#"+newid).remove()	
+				}
+				
+				
+			})
+
+		</script>
+
+	</body>
+
+</html>
+
+
+
+
+
