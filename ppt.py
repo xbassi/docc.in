@@ -18,12 +18,13 @@ for slide in prs.slides:
 			for i in range(len(paras)):
 				r = paras[i].runs
 				
-				print(i,paras[i].text)
-				# for j in range(len(r)):
+				# print(i,paras[i].text)
+				for j in range(len(r)):
 
 					# if i == 5 and j == 0:
 					# 	shape.text_frame.paragraphs[i].runs[j].text += "Added"
-					# print(i,j,r[j].text)
+					print(i,j,r[j].text)
+	print()
 
 delete_slides(prs,0)
 
