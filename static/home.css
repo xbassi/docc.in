@@ -432,4 +432,64 @@ body {
 }
 
 
+.infomodal_container{
+	z-index: 1;
+	position: fixed;
+	top:0;
+	left:0;
+	height: 100%;
+	width: 100%;
+
+	background: rgba(0,0,0,0.2);
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.infomodal{
+
+	height: 200px;
+	width: 450px;
+	color:#000;
+	background-color: #FFF;
+	/*flex-grow: 1;*/
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.infomodal_content{
+	flex-grow: 1;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+.closeinfomodal{
+	padding:10px;
+	border:1px solid #000;
+	cursor: pointer;
+	margin:10px;
+}
+
+
+.loader {
+  border: 8px solid #f3f3f3; /* Light grey */
+  border-top: 8px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
+
 

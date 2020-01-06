@@ -65,7 +65,7 @@
 
 			<div id="centercontent">
 
-				<div id="contenttab1" class="contenttab">
+				<form id="contenttab1" class="contenttab">
 					
 					<div class="newppt_header">
 						<div class="newppt_header_text">
@@ -92,8 +92,8 @@
 								<div class="newppt_selected_stone_icon pointer stone_expander">
 									<i class="material-icons" style="font-size:26px">expand_more</i>
 								</div>
-								<div class="newppt_selected_stone_check pointer stone_selector" >
-									<input type="checkbox" name="slides" value="details" class="stone_selector_input" >
+								<div class="newppt_selected_stone_check stone_selector" >
+									<input type="checkbox" class="stone_selector_input" >
 								</div>
 							</div>
 							<div class="newppt_selected_stone_slides_container">
@@ -106,7 +106,7 @@
 						<div class="newppt_selected_stone_slide slidetemplate">
 							<div class="newppt_selected_stone_slide_head">
 								<div class="newppt_selected_stone_slide_check">
-									<input type="checkbox" name="slides" value="details">
+									<input class="slide_selector_input" type="checkbox" >
 								</div>
 								<div class="newppt_selected_stone_slide_name">
 									Details
@@ -121,7 +121,7 @@
 
 						<div class="newppt_selected_stone_slide_text slidetexttemplate">
 							<div class="newppt_selected_stone_slide_text_check">
-								<input type="checkbox" name="slides" value="name">
+								<input type="checkbox" class="text_selector_input" >
 							</div>
 							<div class="newppt_selected_stone_slide_text_key">
 								Name :
@@ -137,7 +137,8 @@
 						</div>
 					</div>
 
-					<div class="newppt_selected_stone unselected" id="s1u">
+					 
+					<!-- <div class="newppt_selected_stone unselected" id="s1u">
 						<div class="newppt_selected_stone_slides_mast">
 							<div class="newppt_selected_stone_text">
 								Stone 1
@@ -963,15 +964,16 @@
 								</div>
 							</div>
 						</div>
-					</div>
+					</div>  -->
 
-				</div>
+
+				</form>
 
 				<div class="newppt_button_container">
 					<div class="newppt_btn">
 						Save as Template
 					</div>
-					<div class="newppt_btn">
+					<div class="newppt_btn" id="createPPT">
 						Download as PPT
 					</div>
 					<div class="newppt_btn">
@@ -983,7 +985,25 @@
 
 		</div>
 
+		<div class="infomodal_container">
+			<div class="infomodal">
+				<div class="infomodal_content">
+					
+				</div>
+				<div class="closeinfomodal">
+					Close
+				</div>
+			</div>
+			
+		</div>
+
 		<script type="text/javascript">
+
+			$(".infomodal_container").hide()
+
+			$(".closeinfomodal").click(function(){
+				$(".infomodal_container").hide()				
+			})
 
 			$.ajax({
 					url: '/blueprint',
@@ -991,59 +1011,82 @@
 					dataType: 'json',
 					success: function(data) {
 							console.log(data)
-							var count = 0
-							for (var prop in data) {
-								var sec = $(".sectiontemplate").clone()
-								sec.removeClass("sectiontemplate")
-								
-								if (Object.prototype.hasOwnProperty.call(data, prop)) {
-									sec.find(".newppt_selected_stone_text").text(prop)
-									count++
-									sec.attr("id","sec"+count.toString()+"u")
-									sec.find(".stone_selector_input")
-										.attr("id","sec"+count.toString())
-
-									for (var i = 0; i < data[prop].length; i++) {
-
-									
-										var slide = $(".slidetemplate").clone()
-										slide.removeClass("slidetemplate")
-
-										slide.find(".newppt_selected_stone_slide_name")
-											.text(data[prop][i].type)
-
-
-										for (var j = 0; j < data[prop][i].elements.length; j++) {
-
-											var text = $(".slidetexttemplate").clone()
-											text.removeClass("slidetexttemplate")
-
-											text.find(".newppt_selected_stone_slide_text_key")
-												.text(data[prop][i].elements[j].key + " :")
-
-											text.find(".newppt_selected_stone_slide_text_value")
-												.text(data[prop][i].elements[j].value)
-
-
-											slide.find(".newppt_selected_stone_slide_body")
-											.append(text)
-												
-										}
-										
-
-										sec.find(".newppt_selected_stone_slides_container")
-											.append(slide)
-
-
-									}
-								}
-
-								$("#contenttab1").append(sec)
-							}
-																
-							selectionSetup()
+							blueprintSetup(data)							
 						}
 			});
+
+			function blueprintSetup(data){
+				var count = 0
+				for (var prop in data) {
+					var sec = $(".sectiontemplate").clone()
+					sec.removeClass("sectiontemplate")
+					
+					if (Object.prototype.hasOwnProperty.call(data, prop)) {
+						sec.find(".newppt_selected_stone_text").text(prop)
+						count++
+						sec.attr("id","sec"+count.toString()+"u")
+
+						sec.find(".stone_selector_input")
+							.attr("name","A_"+prop)
+
+						sec.find(".stone_selector_input")
+							.attr("id","sec"+count.toString())
+
+						for (var i = 0; i < data[prop].length; i++) {
+
+						
+							var slide = $(".slidetemplate").clone()
+							slide.removeClass("slidetemplate")
+
+							slide.find(".slide_selector_input")
+								.attr("name","B_"+prop+"_"+data[prop][i].type)
+
+
+
+							slide.find(".slide_selector_input")
+								.attr("value",i.toString())
+
+							slide.find(".newppt_selected_stone_slide_name")
+								.text(data[prop][i].type)
+
+
+							for (var j = 0; j < data[prop][i].elements.length; j++) {
+
+								var text = $(".slidetexttemplate").clone()
+								text.removeClass("slidetexttemplate")
+
+								text.find(".newppt_selected_stone_slide_text_key")
+									.text(data[prop][i].elements[j].key + " :")
+
+								text.find(".newppt_selected_stone_slide_text_value")
+									.text(data[prop][i].elements[j].value)
+
+								text.find(".text_selector_input")
+									.attr("name","C_"+prop+"_"+data[prop][i].type+"_"+i.toString()+"_"+data[prop][i].elements[j].key)
+
+								text.find(".text_selector_input")
+									.attr("value",data[prop][i].elements[j].value)
+
+
+								slide.find(".newppt_selected_stone_slide_body")
+								.append(text)
+									
+							}
+							
+
+							sec.find(".newppt_selected_stone_slides_container")
+								.append(slide)
+
+
+						}
+					}
+
+					$("#contenttab1").append(sec)
+				}
+													
+				selectionSetup()
+				createPPT_button_handler()
+			}
 
 			function selectionSetup(){
 				$(".newppt_selected_stone_icon").parent().next().hide()
@@ -1082,7 +1125,7 @@
 						element
 							.children().eq(0)
 							.children(".stone_selector").eq(0)
-							.hide()
+							.remove()
 
 						element.find(".newppt_selected_stone_slide_expand")
 							.addClass(oldid+"_slide_expander")
@@ -1102,6 +1145,33 @@
 					}
 					
 					
+				})
+			}
+
+			function createPPT_button_handler(){
+
+
+				$("#createPPT").click(function(){
+					$(".infomodal_container").show()
+					$(".infomodal_content").html("\
+						<div class='loader'></div>\
+						<br>\
+						Creating PPT...")
+					// var form_data = new FormData($('form#contenttab1')[0]);
+					$.ajax({
+						url: '/selectedstuff',
+						type: 'post',
+						dataType: 'json',
+						data: $('form#contenttab1').serialize(),
+						success: function(data) {
+								// console.log("Hi")
+								$(".infomodal_container").show()
+								$(".infomodal_content").html("\
+									PPT Created!\
+									<br>\
+									<a target='_blank' href='/getfile'>Download</a>")
+							}
+					});					
 				})
 			}
 

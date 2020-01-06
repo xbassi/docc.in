@@ -87,8 +87,29 @@ class Document(object):
 				blueprint[slide_dict["id"]].append(slide_dict)
 
 
-
 		return blueprint
+
+
+	def stripPPT(self,selectedstuff):
+
+		sections_to_keep = []
+		sections_to_delete = []
+
+		blueprint = self.blueprint()
+		
+		for key in selectedstuff.keys():
+
+			if key[0] == "A":
+				title = key.split("_")[1]
+				sections_to_keep.append(title)
+
+		for section in blueprint.keys():
+			if section not in sections_to_keep:
+				sections_to_delete.append(section)
+
+		for section in sections_to_delete:
+			self.deletebyTitle(section)
+
 
 	def editKeyValue(self,slideid,pid,key,value):
 
