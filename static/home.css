@@ -260,7 +260,9 @@ body {
 	font-family: 'Asap', sans-serif;
 	font-size: 14px;
 	text-align: left;
-	
+	display: flex;
+	flex-direction: row;
+	 
 }
 
 .newppt_selected_stone{

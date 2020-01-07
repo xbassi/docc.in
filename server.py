@@ -6,6 +6,8 @@ import pprint
 app = Flask('doccback')
 # webcode = open('webcode.html').read() - not needed
 
+main_doc = "Jumbo 3.pptx"
+
 @app.route('/')
 def webprint():
 	return render_template('home.html') 
@@ -13,7 +15,7 @@ def webprint():
 @app.route('/blueprint', methods=['POST'])
 def send_blueprint():
 	
-	d = Document('Mr. Naval_The Quarry Stones.pptx')
+	d = Document(main_doc)
 
 	bp = d.blueprint()
 
@@ -24,7 +26,7 @@ def get_selectedstuff():
 	
 	pprint.pprint(request.form)
 
-	d = Document('Mr. Naval_The Quarry Stones.pptx')
+	d = Document(main_doc)
 
 	d.stripPPT(request.form)
 

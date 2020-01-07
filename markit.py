@@ -15,7 +15,11 @@ class Document(object):
 		slides = list(xml_slides)
 		xml_slides.remove(slides[slideno])
 
+	def deletebySlideID(self,slide_id):
 
+		slide = self.doc.slides.get(slide_id)
+		index = self.doc.slides.index(slide)
+		self.delete(index)
 
 	def deletebyTitle(self,title):
 		slidestoDelete = []
@@ -55,10 +59,20 @@ class Document(object):
 						if seenOne == False and len(paras[i].text) > 1 and len(paras[i].text) < 40: 
 							seenOne = True
 							slide_dict["title"] = paras[i].text
-							slide_dict["id"] = paras[i].text
+							slide_dict["id"] = str(slide.slide_id)
+							element_dict = {}
+							element_dict["key"] = "Title"
+							element_dict["value"] = paras[i].text
+							element_dict["pid"] = i
+							slide_dict["elements"].append(element_dict)
 
 						elif " Image" in paras[i].text:
 							slide_dict["type"] = paras[i].text
+							element_dict = {}
+							element_dict["key"] = "Slide Type"
+							element_dict["value"] = paras[i].text
+							element_dict["pid"] = i
+							slide_dict["elements"].append(element_dict)
 
 						elif ":" in paras[i].text.lower() and len(paras[i].text) < 40:
 							element_dict = {}
@@ -76,40 +90,74 @@ class Document(object):
 							slide_dict["elements"].append(element_dict)
 
 			if "id" not in slide_dict:
-				slide_dict["id"] = slideid
+				slide_dict["id"] = str(slide.slide_id)
+				slide_dict["type"] = "Single Slide"
+				slide_dict["elements"] = []
 				slide_dict["title"] = "Intro Slide "+str(slideid)
-				blueprint["Intro Slide "+str(slideid)] = slide_dict
+				blueprint["Intro Slide "+str(slideid)] = [slide_dict]
 
 			else:
-				if slide_dict["id"] not in blueprint:
-					blueprint[slide_dict["id"]] = []
+				if slide_dict["title"] not in blueprint:
+					blueprint[slide_dict["title"]] = []
 
-				blueprint[slide_dict["id"]].append(slide_dict)
+				blueprint[slide_dict["title"]].append(slide_dict)
 
 
 		return blueprint
 
+	
+
+
 
 	def stripPPT(self,selectedstuff):
 
-		sections_to_keep = []
-		sections_to_delete = []
+		slide_ids_to_keep = []
+		text_ids_to_keep = {}
 
 		blueprint = self.blueprint()
 		
 		for key in selectedstuff.keys():
 
 			if key[0] == "A":
-				title = key.split("_")[1]
-				sections_to_keep.append(title)
+				slide_ids_to_keep.append(int(selectedstuff[key]))
+
+			elif key[0] == "B":
+				value_split = key.split("_")
+				slide_id = value_split[1]
+				text_id = value_split[2]
+				text_key = value_split[3]
+
+				if slide_id not in text_ids_to_keep:
+					text_ids_to_keep[slide_id] = {}
+
+				text_ids_to_keep[slide_id][text_id] = [text_key,selectedstuff[key]]
 
 		for section in blueprint.keys():
-			if section not in sections_to_keep:
-				sections_to_delete.append(section)
+			for slide in blueprint[section]:
+				if int(slide["id"]) not in slide_ids_to_keep:
+					self.deletebySlideID(int(slide["id"]))
 
-		for section in sections_to_delete:
-			self.deletebyTitle(section)
-
+		for slide_id in text_ids_to_keep:
+			for shape in self.doc.slides.get(int(slide_id)).shapes:
+				if hasattr(shape, "text"):
+					paras = shape.text_frame.paragraphs
+					# td = []
+					# j = 0
+					i = 0
+					for para in paras:
+						if ((str(i) not in text_ids_to_keep[slide_id]) and 
+							(para.text != "")):
+							# td.append(i-j)
+							# j+=1
+							p = para._p
+							p.getparent().remove(p)
+						i+=1
+					# print(td)
+					# for k in td:
+					# 	para = paras[k]
+					# 	p = para._p
+					# 	p.getparent().remove(p)
+					
 
 	def editKeyValue(self,slideid,pid,key,value):
 
