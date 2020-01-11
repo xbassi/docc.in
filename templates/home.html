@@ -994,7 +994,15 @@
 					Close
 				</div>
 			</div>
-			
+		</div>
+
+		<div class="editmodal_container">
+			<div class="editmodal">
+				<textarea class="editmodal_input" rows="5" cols="50"></textarea>
+				<div class="saveeditmodal">
+					Save
+				</div>
+			</div>
 		</div>
 
 		<script type="text/javascript">
@@ -1004,6 +1012,21 @@
 			$(".closeinfomodal").click(function(){
 				$(".infomodal_container").hide()				
 			})
+
+			$(".editmodal_container").hide()
+
+			$(".saveeditmodal").click(function(){
+				var value = $(".editmodal_input").val()
+				$(".editing")
+					.find(".text_selector_input")
+					.attr("value",value)
+				$(".editing")
+					.find(".newppt_selected_stone_slide_text_value")
+					.text(value)
+				$(".editing").removeClass("editing")
+				$(".editmodal_container").hide()
+			})
+
 
 			$.ajax({
 					url: '/blueprint',
@@ -1070,7 +1093,6 @@
 								text.find(".text_selector_input")
 									.attr("value",data[prop][i].elements[j].value)
 
-
 								slide.find(".newppt_selected_stone_slide_body")
 								.append(text)
 									
@@ -1133,6 +1155,9 @@
 						element.find(".newppt_selected_stone_slide_expand")
 							.addClass(oldid+"_slide_expander")
 
+						element.find(".newppt_selected_stone_slide_text_edit")
+							.addClass(oldid+"_edittext")
+
 						element.insertBefore("#allstones_header")
 
 						var selected_count = Number($(".num_selected").text())
@@ -1145,6 +1170,15 @@
 						$("."+oldid+"_slide_expander").click(function(){
 							$(this).parent().next().toggle()
 						})
+
+						$("."+oldid+"_edittext").click(function(){
+							$(this).parent()
+								.addClass("editing")
+
+							var value = $(this).prev().text()
+							$(".editmodal_input").val(value)
+							$(".editmodal_container").show()
+						})
 					}
 					else{
 						$("#"+newid).remove()	
@@ -1155,6 +1189,7 @@
 					
 				})
 			}
+
 
 			function createPPT_button_handler(){
 

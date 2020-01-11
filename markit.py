@@ -1,5 +1,5 @@
 from pptx import Presentation
-
+import re
 
 
 class Document(object):
@@ -57,6 +57,7 @@ class Document(object):
 					slide_dict["elements"] = []
 					for i in range(len(paras)):
 						if seenOne == False and len(paras[i].text) > 1 and len(paras[i].text) < 40: 
+							# this detects the slide title
 							seenOne = True
 							slide_dict["title"] = paras[i].text
 							slide_dict["id"] = str(slide.slide_id)
@@ -67,6 +68,7 @@ class Document(object):
 							slide_dict["elements"].append(element_dict)
 
 						elif " Image" in paras[i].text:
+							# this detected the slide type
 							slide_dict["type"] = paras[i].text
 							element_dict = {}
 							element_dict["key"] = "Slide Type"
@@ -75,6 +77,7 @@ class Document(object):
 							slide_dict["elements"].append(element_dict)
 
 						elif ":" in paras[i].text.lower() and len(paras[i].text) < 40:
+							# this is detected as a key value entity
 							element_dict = {}
 							element_dict["key"] = paras[i].text.split(":")[0]
 							element_dict["value"] = paras[i].text.split(":")[1]
@@ -82,6 +85,7 @@ class Document(object):
 							slide_dict["elements"].append(element_dict)
 
 						elif len(paras[i].text) > 40:
+							# this is detected as a paragraph
 							desc_count += 1
 							element_dict = {}
 							element_dict["key"] = "Description "+str(desc_count)
@@ -110,7 +114,14 @@ class Document(object):
 
 
 	def stripPPT(self,selectedstuff):
-
+		'''
+		Function to remove all unnecessary sections from ppt
+		and keep only the selected slides, and content,
+		do so by sending a list of slide IDs and removing all
+		slides not in that list.
+		Similarly by sending all the content ids, and removing
+		everything not in that list.
+		'''
 		slide_ids_to_keep = []
 		text_ids_to_keep = {}
 
@@ -119,44 +130,76 @@ class Document(object):
 		for key in selectedstuff.keys():
 
 			if key[0] == "A":
+				# keys that start with A_ represent sections to keep
+				# and their values contain slide_IDs
 				slide_ids_to_keep.append(int(selectedstuff[key]))
 
 			elif key[0] == "B":
+				# keys that start with B_ represent paragraphs to keep
+				# and their values contain the actual values of the paragraph
+				# format: B_slideid_textid_textkey
 				value_split = key.split("_")
 				slide_id = value_split[1]
 				text_id = value_split[2]
 				text_key = value_split[3]
 
+				# add slideid key to dict
 				if slide_id not in text_ids_to_keep:
 					text_ids_to_keep[slide_id] = {}
 
+				# create a heirarchieal datastructure to represent the text
+				# to keep and what value to store
 				text_ids_to_keep[slide_id][text_id] = [text_key,selectedstuff[key]]
 
+		# remove unselected text from slides 
+		for slide_id in text_ids_to_keep:
+			for shape in self.doc.slides.get(int(slide_id)).shapes:
+				if hasattr(shape, "text"):
+					paras = shape.text_frame.paragraphs
+					
+					i = 0
+					# i tracks the paragraph index in the textbox
+					# we keep track of which paragraph index are selected
+					for para in paras:
+						if ((str(i) not in text_ids_to_keep[slide_id]) and 
+							(para.text != "")):
+							
+							# actual delete paragraph ops
+							p = para._p
+							p.getparent().remove(p)
+
+						elif (str(i) in text_ids_to_keep[slide_id]):
+							
+							value = text_ids_to_keep[slide_id][str(i)][1]
+
+							if ":" in para.text:
+								runs = para.runs
+								# we assume there is only single run
+								if len(runs) > 1:
+									
+									runs[0].text = para.text
+									runs[0].text = runs[0].text.replace("_x000B_","")
+									print(runs[0].text)
+									for j in range(1,len(runs)):
+										runs[j].text = ""
+
+								index = para.runs[0].text.index(":")
+								paras[i].runs[0].text = paras[i].runs[0].text[:index+1] + value
+								
+							else:
+								paras[i].runs[0].text = value
+						i+=1
+
+
+
+		# remove slides that are not selected
 		for section in blueprint.keys():
 			for slide in blueprint[section]:
 				if int(slide["id"]) not in slide_ids_to_keep:
 					self.deletebySlideID(int(slide["id"]))
 
-		for slide_id in text_ids_to_keep:
-			for shape in self.doc.slides.get(int(slide_id)).shapes:
-				if hasattr(shape, "text"):
-					paras = shape.text_frame.paragraphs
-					# td = []
-					# j = 0
-					i = 0
-					for para in paras:
-						if ((str(i) not in text_ids_to_keep[slide_id]) and 
-							(para.text != "")):
-							# td.append(i-j)
-							# j+=1
-							p = para._p
-							p.getparent().remove(p)
-						i+=1
-					# print(td)
-					# for k in td:
-					# 	para = paras[k]
-					# 	p = para._p
-					# 	p.getparent().remove(p)
+
+					
 					
 
 	def editKeyValue(self,slideid,pid,key,value):
