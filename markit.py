@@ -122,6 +122,9 @@ class Document(object):
 		Similarly by sending all the content ids, and removing
 		everything not in that list.
 		'''
+
+		slide_order = list(map(int,selectedstuff["slide_order"].split("_")))
+
 		slide_ids_to_keep = []
 		text_ids_to_keep = {}
 
@@ -179,7 +182,7 @@ class Document(object):
 									
 									runs[0].text = para.text
 									runs[0].text = runs[0].text.replace("_x000B_","")
-									print(runs[0].text)
+									
 									for j in range(1,len(runs)):
 										runs[j].text = ""
 
@@ -187,6 +190,12 @@ class Document(object):
 								paras[i].runs[0].text = paras[i].runs[0].text[:index+1] + value
 								
 							else:
+								runs = para.runs
+								if len(runs) > 1:
+									runs[0].text = para.text
+									for j in range(1,len(runs)):
+										runs[j].text = ""
+								
 								paras[i].runs[0].text = value
 						i+=1
 
@@ -198,10 +207,22 @@ class Document(object):
 				if int(slide["id"]) not in slide_ids_to_keep:
 					self.deletebySlideID(int(slide["id"]))
 
+		i = 0
+		for slide_id in slide_order:
+
+			slide = self.doc.slides.get(slide_id)
+			index = self.doc.slides.index(slide)
+
+			self.move_slide(index, i)
+			i+=1
+
+	def move_slide(self, old_index, new_index):
+		xml_slides = self.doc.slides._sldIdLst  # pylint: disable=W0212
+		slides = list(xml_slides)
+		xml_slides.remove(slides[old_index])
+		xml_slides.insert(new_index, slides[old_index])
 
 					
-					
-
 	def editKeyValue(self,slideid,pid,key,value):
 
 		for shape in self.doc.slides[slideid].shapes:

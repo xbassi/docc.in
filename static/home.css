@@ -331,6 +331,18 @@ body {
 	padding:4px;
 }
 
+.newppt_selected_stone_move{
+	/*padding: 4px;*/
+	margin-right:7px;
+	margin-left:4px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	color:#444;
+	cursor: pointer;
+}
+
 .newppt_selected_stone_icon{
 	padding:4px;	
 }
@@ -533,3 +545,8 @@ body {
 	cursor: pointer;
 	margin:10px;
 }
+
+
+
+
+

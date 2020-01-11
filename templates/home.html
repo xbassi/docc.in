@@ -66,13 +66,13 @@
 			<div id="centercontent">
 
 				<form id="contenttab1" class="contenttab">
-					
+					<input type="hidden" id="slide_order" name="slide_order" value="" />
 					<div class="newppt_header">
 						<div class="newppt_header_text">
 							List of Sections
 						</div>
 					</div>
-					<div class="newppt_selected_header">
+					<div class="newppt_selected_header" id="selected_start">
 						<div class="newppt_selected_header_text">
 							Selected (<div class="num_selected">0</div>)
 						</div>
@@ -86,6 +86,10 @@
 					<div class="templates">
 						<div class="newppt_selected_stone unselected sectiontemplate" >
 							<div class="newppt_selected_stone_slides_mast">
+								<div class="newppt_selected_stone_move stone_mover" >
+									<i class="material-icons moveup" style="font-size:13px">arrow_upward</i>
+									<i class="material-icons movedown" style="font-size:13px">arrow_downward</i>
+								</div>
 								<div class="newppt_selected_stone_text">
 									Section Title
 								</div>
@@ -138,11 +142,16 @@
 					</div>
 
 					 
-					<!-- <div class="newppt_selected_stone unselected" id="s1u">
+<!-- 					<div class="newppt_selected_stone unselected" id="s1u">
 						<div class="newppt_selected_stone_slides_mast">
+							<div class="newppt_selected_stone_move stone_mover" >
+								<i class="material-icons" style="font-size:13px">arrow_upward</i>
+								<i class="material-icons" style="font-size:13px">arrow_downward</i>
+							</div>
 							<div class="newppt_selected_stone_text">
 								Stone 1
 							</div>
+							
 							<div class="newppt_selected_stone_icon pointer stone_expander">
 								<i class="material-icons" style="font-size:26px">expand_more</i>
 							</div>
@@ -964,8 +973,8 @@
 								</div>
 							</div>
 						</div>
-					</div>  -->
-
+					</div> 
+ -->
 
 				</form>
 
@@ -1113,11 +1122,23 @@
 				createPPT_button_handler()
 			}
 
+
 			function selectionSetup(){
-				$(".newppt_selected_stone_icon").parent().next().hide()
-				$(".newppt_selected_stone_slide_expand").parent().next().hide()
+				$(".newppt_selected_stone_icon")
+					.parent()
+					.parent()
+					.find(".newppt_selected_stone_slides_container")
+					.hide()
+
+				$(".newppt_selected_stone_slide_expand")
+					.parent()
+					.parent()
+					.find(".newppt_selected_stone_slide_body")
+					.hide()
 
 				$(".stone_expander").hide()
+				$(".stone_mover").hide()
+				
 
 				$(".stone_selector_input").click(function(){
 
@@ -1132,24 +1153,43 @@
 						element.removeAttr("id")
 						element.removeClass("unselected")
 						element.attr("id",newid)
+
 						element
-							.children().eq(0)
-							.children(".stone_expander").eq(0)
+							.find(".slide_selector_input")
+							.addClass("slide_selector_input_selected")
+
+						element
+							.find(".stone_expander")
 							.show()
 						
 						element
-							.children().eq(0)
-							.children(".stone_expander").eq(0)
+							.find(".stone_expander")
 							.attr("id",oldid+"_expander")
 
 						element
-							.children().eq(0)
-							.children(".stone_expander").eq(0)
+							.find(".stone_expander")
 							.removeClass(".stone_expander")
-							
+						
 						element
-							.children().eq(0)
-							.children(".stone_selector").eq(0)
+							.find(".stone_mover")
+							.show()
+						
+						element
+							.find(".stone_mover")
+							.find(".moveup")
+							.attr("id",oldid+"_moveup")
+
+						element
+							.find(".stone_mover")
+							.find(".movedown")
+							.attr("id",oldid+"_movedown")
+
+						element
+							.find(".stone_mover")
+							.removeClass(".stone_mover")
+
+						element
+							.find(".stone_selector")
 							.remove()
 
 						element.find(".newppt_selected_stone_slide_expand")
@@ -1162,6 +1202,32 @@
 
 						var selected_count = Number($(".num_selected").text())
 						$(".num_selected").text((selected_count+1).toString())
+
+						// selected_start
+						// allstones_header
+						$("#"+oldid+"_moveup").click(function(){
+							if ($(this).parent().parent().parent().prev().attr("id") == "selected_start")
+							{
+
+							}
+							else{
+								previouselement = $(this).parent().parent().parent().prev()
+								$(this).parent().parent().parent().insertBefore(previouselement)	
+							}
+							
+						})
+
+						$("#"+oldid+"_movedown").click(function(){
+							if ($(this).parent().parent().parent().next().attr("id") == "allstones_header")
+							{
+
+							}
+							else{
+								nextelement = $(this).parent().parent().parent().next()
+								$(this).parent().parent().parent().insertAfter(nextelement)	
+							}
+							
+						})
 
 						$("#"+oldid+"_expander").click(function(){
 							$(this).parent().next().toggle()
@@ -1190,11 +1256,28 @@
 				})
 			}
 
+			// selectionSetup()
 
 			function createPPT_button_handler(){
 
 
 				$("#createPPT").click(function(){
+
+					
+					ordered_slides = $(".slide_selector_input_selected")
+					order_string = ""
+					for (var i = 0; i < ordered_slides.length; i++) {
+						if (i == 0){
+							order_string = order_string + ordered_slides.eq(i).attr("value")
+						}
+						else{
+							order_string = order_string + "_" + ordered_slides.eq(i).attr("value")
+						}
+						
+					}
+
+					$("#slide_order").attr("value",order_string)
+
 					$(".infomodal_container").show()
 					$(".infomodal_content").html("\
 						<div class='loader'></div>\
