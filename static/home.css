@@ -254,6 +254,8 @@ body {
 	background: #DDD;
 	/*background-color: rgba(36,110,185,1.0);
 	color:#FFF;*/
+	display: flex;
+	flex-direction: row;
 }
 
 .newppt_selected_header_text{
@@ -262,7 +264,19 @@ body {
 	text-align: left;
 	display: flex;
 	flex-direction: row;
-	 
+	flex-grow: 1;
+}
+
+.section_search_bar_container{
+
+}
+
+#section_search_bar{
+	width:150px;
+	border:none;
+	border-radius: 5px;
+	font-size: 10px;
+	padding:3px;
 }
 
 .newppt_selected_stone{
@@ -545,7 +559,6 @@ body {
 	cursor: pointer;
 	margin:10px;
 }
-
 
 
 

@@ -82,6 +82,10 @@
 						<div class="newppt_selected_header_text">
 							Availabe Sections (<div class="num_sections"></div>)
 						</div>
+						<div class="section_search_bar_container">
+							<input type="text" name="section_search_bar" 
+								id="section_search_bar" placeholder="Search Stone">
+						</div>
 					</div>
 					<div class="templates">
 						<div class="newppt_selected_stone unselected sectiontemplate" >
@@ -1120,8 +1124,19 @@
 													
 				selectionSetup()
 				createPPT_button_handler()
+				search_handler()
 			}
 
+			function search_handler(){
+
+				$("#section_search_bar").on("keyup", function() {
+				    var value = $(this).val().toLowerCase(); 
+					var search_space = $(".unselected").find(".newppt_selected_stone_text")
+				    search_space.filter(function() {
+				      $(this).parent().parent().toggle($(this).text().toLowerCase().indexOf(value) > -1)
+				    });
+				  });
+			}
 
 			function selectionSetup(){
 				$(".newppt_selected_stone_icon")
