@@ -7,5 +7,6 @@ lxml==4.4.2
 MarkupSafe==1.1.1
 Pillow==7.0.0
 python-pptx==0.6.18
+six==1.14.0
 Werkzeug==0.16.0
 XlsxWriter==1.2.7
