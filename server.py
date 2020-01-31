@@ -6,6 +6,8 @@ import pprint
 app = Flask('doccback')
 # webcode = open('webcode.html').read() - not needed
 
+app.config['UPLOAD_FOLDER'] = "./static/"
+
 main_doc = "Jumbo 3.pptx"
 
 @app.route('/')
@@ -34,6 +36,19 @@ def get_selectedstuff():
 
 	return jsonify("{'status':'success'}"),200,{'ContentType':'application/json'}
 
+@app.route('/createslide', methods=['POST'])
+def createslide():
+	
+	pprint.pprint(request.form)
+	d = Document(main_doc)	
+
+	filepath = app.config['UPLOAD_FOLDER'] +request.form["stone_name"]+"_"+request.form["stone_imagetype"]+".png"
+	slide_img = request.files["stone_image"]
+	slide_img.save(filepath)
+
+	d.create_slide(request.form,filepath)
+
+	return jsonify({'status':'success'}),200,{'ContentType':'application/json'}
 
 @app.route('/getfile', methods=['GET'])
 def get_newfile():

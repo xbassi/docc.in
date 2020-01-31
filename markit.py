@@ -1,5 +1,9 @@
 from pptx import Presentation
+import copy
+import six
 import re
+from PIL import Image
+from pptx.util import Cm
 
 
 class Document(object):
@@ -40,7 +44,6 @@ class Document(object):
 			newindex = slidestoDelete[j] - j
 			self.delete(newindex)
 
-
 	def blueprint(self):
 
 		blueprint = {}
@@ -56,7 +59,7 @@ class Document(object):
 					slide_dict["type"] = "Details"
 					slide_dict["elements"] = []
 					for i in range(len(paras)):
-						if seenOne == False and len(paras[i].text) > 1 and len(paras[i].text) < 40: 
+						if seenOne == False and len(paras[i].text) > 1 and len(paras[i].text) < 50: 
 							# this detects the slide title
 							seenOne = True
 							slide_dict["title"] = paras[i].text
@@ -76,7 +79,7 @@ class Document(object):
 							element_dict["pid"] = i
 							slide_dict["elements"].append(element_dict)
 
-						elif ":" in paras[i].text.lower() and len(paras[i].text) < 40:
+						elif ":" in paras[i].text.lower() and len(paras[i].text) < 50:
 							# this is detected as a key value entity
 							element_dict = {}
 							element_dict["key"] = paras[i].text.split(":")[0]
@@ -84,7 +87,7 @@ class Document(object):
 							element_dict["pid"] = i
 							slide_dict["elements"].append(element_dict)
 
-						elif len(paras[i].text) > 40:
+						elif len(paras[i].text) > 50:
 							# this is detected as a paragraph
 							desc_count += 1
 							element_dict = {}
@@ -108,10 +111,6 @@ class Document(object):
 
 
 		return blueprint
-
-	
-
-
 
 	def stripPPT(self,selectedstuff):
 		'''
@@ -190,13 +189,14 @@ class Document(object):
 								paras[i].runs[0].text = paras[i].runs[0].text[:index+1] + value
 								
 							else:
-								runs = para.runs
-								if len(runs) > 1:
-									runs[0].text = para.text
-									for j in range(1,len(runs)):
-										runs[j].text = ""
+								# runs = para.runs
+								# if len(runs) > 1:
+								# 	runs[0].text = para.text
+								# 	for j in range(1,len(runs)):
+								# 		runs[j].text = ""
 								
-								paras[i].runs[0].text = value
+								# paras[i].runs[0].text = value
+								self.replace_paragraph_retaining_formatting(paras[i],value)
 						i+=1
 
 
@@ -221,11 +221,32 @@ class Document(object):
 		slides = list(xml_slides)
 		xml_slides.remove(slides[old_index])
 		xml_slides.insert(new_index, slides[old_index])
+	
+	def replace_paragraph_retaining_formatting(self,paragraph, new_text):
+	    p = paragraph._p  # the lxml element containing the `<a:p>` paragraph element
+	    # remove all but the first run
+	    for idx, run in enumerate(paragraph.runs):
+	        if idx == 0:
+	            continue
+	        p.remove(run._r)
+	    if len(paragraph.runs) > 0:
+		    paragraph.runs[0].text = new_text
 
-					
-	def editKeyValue(self,slideid,pid,key,value):
+	def editTitle(self,slide,value):
 
-		for shape in self.doc.slides[slideid].shapes:
+		for shape in slide.shapes:
+			if hasattr(shape, "text"):
+				paras = shape.text_frame.paragraphs
+				for i in range(len(paras)):
+					if len(paras[i].runs) > 0:
+						self.replace_paragraph_retaining_formatting(paras[i],value)
+						return True
+
+		return False
+
+	def editKeyValue(self,slide,key,value):
+
+		for shape in slide.shapes:
 			if hasattr(shape, "text"):
 				paras = shape.text_frame.paragraphs
 				for i in range(len(paras)):
@@ -233,26 +254,145 @@ class Document(object):
 					if ((":" in paras[i].text) and 
 						(key.lower() in paras[i].text.lower())):
 
-						index = paras[i].text.index(":")
+						# index = paras[i].text.index(":")
 						# we assume there is only single run
-						paras[i].runs[0].text = paras[i].runs[0].text[:index+1] + value
+						# paras[i].runs[0].text = paras[i].runs[0].text[:index+1] + value
+						
+						self.replace_paragraph_retaining_formatting(paras[i],key+value)
+						
 						return True
 
 		return False
 
-
-	def editParagraph(self,slideid,paraid,content):
-		for shape in self.doc.slides[slideid].shapes:
+	def editValue(self,slide,oldvalue,newvalue):
+		for shape in slide.shapes:
 			if hasattr(shape, "text"):
 				paras = shape.text_frame.paragraphs
-				if len(paras[paraid].text) > 40 :
-					# qualifies as paragraph
-					pass
+				for i in range(len(paras)):
+
+					if paras[i].text == oldvalue:
+						self.replace_paragraph_retaining_formatting(paras[i],newvalue)
+
+					return True
+
+		return False
+
+	def editParagraph(self,slide,content):
+		for shape in slide.shapes:
+			if hasattr(shape, "text"):
+				paras = shape.text_frame.paragraphs
+				for i in range(len(paras)):
+					if len(paras[i].text) > 50 :
+						# qualifies as paragraph
+						
+						self.replace_paragraph_retaining_formatting(paras[i],content)
+
+						return True
+		return False
 
 	def save(self,name):
+		
 		self.doc.save(name)
 
+	def replace_image(self,slide,imgpath):
+		for shape in slide.shapes:
+			if hasattr(shape, "image"):
+				img = shape
+				if img.width > 2000000 : 
+					imgPic = img._pic
+					imgRID = imgPic.xpath('./p:blipFill/a:blip/@r:embed')[0]
+					imgPart = slide.part.related_parts[imgRID]
 
+					with open(imgpath, 'rb') as f:
+					    rImgBlob = f.read()
+					rImgWidth, rImgHeight = Image.open(imgpath).size
+					rImgWidth, rImgHeight = Cm(rImgWidth), Cm(rImgHeight) # change from Px
+
+					# replace
+					imgPart._blob = rImgBlob
+					
+					widthScale = float(rImgWidth) / img.width
+					heightScale = float(rImgHeight) / img.height
+					maxScale = max(widthScale, heightScale)
+					scaledImgWidth, scaledImgHeight = int(rImgWidth / maxScale), int(rImgHeight / maxScale)
+					# center the image if it's different size to the original
+					scaledImgLeft = int(img.left + (img.width - scaledImgWidth)/2)
+					scaledImgTop = int(img.top + (img.height - scaledImgHeight)/2)
+					# now update
+					img.left, img.top, img.width, img.height = scaledImgLeft, scaledImgTop, scaledImgWidth, scaledImgHeight
+					break
+
+
+	def create_slide(self,details,imgpath):
+
+		newslide = None
+
+		if details["stone_imagetype"] == "":
+			newslide = self.duplicate_slide(3)
+		else:
+			newslide = self.duplicate_slide(6)
+
+		for key in details:
+
+			if key == "stone_name":
+				self.editTitle(newslide, details[key])
+
+			elif key == "stone_description" and details["stone_imagetype"] == '':
+				self.editParagraph(newslide,details[key])
+
+			elif key == "stone_imagetype" and details["stone_imagetype"] != '' :
+				self.editValue(newslide,"Bookmatch Image",details[key])
+
+			elif key == "stone_price":
+				self.editKeyValue(newslide,"Price:",details[key])
+
+			elif key == "stone_discount":
+				self.editKeyValue(newslide,"Discount:",details[key])
+
+			elif key == "stone_discounted_price":
+				self.editKeyValue(newslide,"Discounted Price:",details[key])
+
+			elif key == "stone_size":
+				self.editKeyValue(newslide,"Size:",details[key])
+
+			elif key == "stone_quantity":
+				self.editKeyValue(newslide,"Quantity:",details[key])
+
+			elif key == "stone_processing":
+				self.editKeyValue(newslide,"Processing:",details[key])
+
+			elif key == "stone_thickness":
+				self.editKeyValue(newslide,"Thickness:",details[key])
+
+
+		self.replace_image(newslide,imgpath)
+
+		self.save("Jumbo 3.pptx")
+
+
+	def duplicate_slide(self,index):
+
+		template = self.doc.slides[index]
+		try:
+			blank_slide_layout = self.doc.slide_layouts[4]
+		except:
+			blank_slide_layout = self.doc.slide_layouts[len(self.doc.slide_layouts)-1]
+
+		copied_slide = self.doc.slides.add_slide(blank_slide_layout)
+
+		for shp in template.shapes:
+			el = shp.element
+			newel = copy.deepcopy(el)
+			copied_slide.shapes._spTree.insert_element_before(newel, 'p:extLst')
+
+		for _, value in six.iteritems(template.part.rels):
+			# Make sure we don't copy a notesSlide relation as that won't exist
+			if "notesSlide" not in value.reltype:
+				copied_slide.part.rels.add_relationship(value.reltype,
+												value._target,
+												value.rId)
+
+		return copied_slide
 
 
 # TODO: 

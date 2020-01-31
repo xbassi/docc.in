@@ -82,6 +82,11 @@
 						<div class="newppt_selected_header_text">
 							Availabe Sections (<div class="num_sections"></div>)
 						</div>
+
+						<div class="add_stone_container">
+							<div class="add_stone_button">Add Stone</div>
+						</div>
+
 						<div class="section_search_bar_container">
 							<input type="text" name="section_search_bar" 
 								id="section_search_bar" placeholder="Search Stone">
@@ -994,6 +999,7 @@
 					</div>
 				</div>
 
+
 			</div>
 
 		</div>
@@ -1018,12 +1024,66 @@
 			</div>
 		</div>
 
+		<div class="add_stone_modal_container">
+			<div class="add_stone_modal">
+				<form class="add_stone_form" enctype="multipart/form-data" >
+					<div class="add_stone_modal_head">
+						Add Slide Form
+					</div>
+					<div class="add_stone_input_container">Stone name: <input class="add_stone_input" type="text" name="stone_name"></div>
+					<div class="add_stone_input_container">Stone Description: <input class="add_stone_input" type="text" name="stone_description"></div>
+					<div class="add_stone_input_container">Stone Image Type: <input class="add_stone_input" type="text" name="stone_imagetype"></div>
+					<div class="add_stone_input_container">Stone Price: <input class="add_stone_input" type="text" name="stone_price"></div>
+					<div class="add_stone_input_container">Discount: <input class="add_stone_input" type="text" name="stone_discount"></div>
+					<div class="add_stone_input_container">Discounted Price: <input class="add_stone_input" type="text" name="stone_discounted_price"></div>
+					<div class="add_stone_input_container">Stone Size: <input class="add_stone_input" type="text" name="stone_size"></div>
+					<div class="add_stone_input_container">Stone Quantity: <input class="add_stone_input" type="text" name="stone_quantity"></div>
+					<div class="add_stone_input_container">Stone Processing: <input class="add_stone_input" type="text" name="stone_processing"></div>
+					<div class="add_stone_input_container">Stone Thickness: <input class="add_stone_input" type="text" name="stone_thickness"></div>
+
+					<div class="add_stone_input_container">Select Slide Image: <input type="file" name="stone_image"></div>
+
+					<div class="add_stone_input_container">
+						<div class="add_stone_submit">Create Slide</div>
+					</div>
+				</form>
+				<div><i class="add_stone_close material-icons" style="font-size:36px">clear</i></div>
+			</div>
+		</div>
+
 		<script type="text/javascript">
 
+			$(".add_stone_modal_container").hide()
 			$(".infomodal_container").hide()
 
 			$(".closeinfomodal").click(function(){
 				$(".infomodal_container").hide()				
+			})
+
+			$(".add_stone_close").click(function(){
+				$(".add_stone_modal_container").hide()
+			})
+
+			$(".add_stone_submit").click(function(){
+				var form_data = new FormData($('form.add_stone_form')[0]);
+				$.ajax({
+					url: '/createslide',
+					type: 'post',
+					dataType: 'json',
+					data: form_data,
+					contentType: false,
+					cache: false,
+		            processData: false,
+					success: function(data) {
+							// console.log(data)
+							// alert("Tele-Case has been Sent.");
+						    location.reload()
+						}
+				});
+			})
+
+			$(".add_stone_button").click(function(){
+				$(".add_stone_modal_container").show()	
 			})
 
 			$(".editmodal_container").hide()
