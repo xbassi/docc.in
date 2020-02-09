@@ -53,6 +53,7 @@ class Document(object):
 			slide_dict = {}
 			seenOne = False
 			desc_count = 0
+			footer = "Images don’t do justice to the actual beauty of the stone"
 			for shape in slide.shapes:
 				if hasattr(shape, "text"):
 					paras = shape.text_frame.paragraphs
@@ -87,11 +88,20 @@ class Document(object):
 							element_dict["pid"] = i
 							slide_dict["elements"].append(element_dict)
 
-						elif len(paras[i].text) > 50:
+						elif len(paras[i].text) > 50 and (footer not in paras[i].text):
 							# this is detected as a paragraph
 							desc_count += 1
 							element_dict = {}
 							element_dict["key"] = "Description "+str(desc_count)
+							element_dict["value"] = paras[i].text
+							element_dict["pid"] = i
+							slide_dict["elements"].append(element_dict)
+
+						elif len(paras[i].text) > 50 and (footer in paras[i].text):
+							# this is detected as a paragraph
+							# desc_count += 1
+							element_dict = {}
+							element_dict["key"] = "Footer"
 							element_dict["value"] = paras[i].text
 							element_dict["pid"] = i
 							slide_dict["elements"].append(element_dict)
@@ -104,6 +114,10 @@ class Document(object):
 				blueprint["Intro Slide "+str(slideid)] = [slide_dict]
 
 			else:
+				if len(slide_dict["elements"]) <= 1:
+					slide_dict["type"] = "Single Slide"
+
+
 				if slide_dict["title"] not in blueprint:
 					blueprint[slide_dict["title"]] = []
 
@@ -327,21 +341,21 @@ class Document(object):
 
 		newslide = None
 
-		if details["stone_imagetype"] == "":
-			newslide = self.duplicate_slide(3)
-		else:
-			newslide = self.duplicate_slide(6)
+		# if details["stone_imagetype"] == "":
+		newslide = self.duplicate_slide(3)
+		# else:
+		# 	newslide = self.duplicate_slide(6)
 
 		for key in details:
 
 			if key == "stone_name":
 				self.editTitle(newslide, details[key])
 
-			elif key == "stone_description" and details["stone_imagetype"] == '':
+			elif key == "stone_description":
 				self.editParagraph(newslide,details[key])
 
-			elif key == "stone_imagetype" and details["stone_imagetype"] != '' :
-				self.editValue(newslide,"Bookmatch Image",details[key])
+			# elif key == "stone_imagetype" and details["stone_imagetype"] != '' :
+			# 	self.editValue(newslide,"Bookmatch Image",details[key])
 
 			elif key == "stone_price":
 				self.editKeyValue(newslide,"Price:",details[key])
@@ -369,6 +383,15 @@ class Document(object):
 
 		self.save("Jumbo 3.pptx")
 
+
+	def create_meta_slide(self,title):
+
+		newslide = self.duplicate_slide(18)
+
+		self.editTitle(newslide, title)
+
+		self.save("Jumbo 3.pptx")
+		
 
 	def duplicate_slide(self,index):
 

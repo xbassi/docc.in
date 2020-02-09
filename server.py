@@ -42,11 +42,21 @@ def createslide():
 	pprint.pprint(request.form)
 	d = Document(main_doc)	
 
-	filepath = app.config['UPLOAD_FOLDER'] +request.form["stone_name"]+"_"+request.form["stone_imagetype"]+".png"
+	filepath = app.config['UPLOAD_FOLDER'] +request.form["stone_name"]+"_main.png"
 	slide_img = request.files["stone_image"]
 	slide_img.save(filepath)
 
 	d.create_slide(request.form,filepath)
+
+	return jsonify({'status':'success'}),200,{'ContentType':'application/json'}
+
+@app.route('/create_meta_slide', methods=['POST'])
+def createmetaslide():
+	
+	pprint.pprint(request.form)
+	title = request.form["Title"]
+	d = Document(main_doc)
+	d.create_meta_slide(title)
 
 	return jsonify({'status':'success'}),200,{'ContentType':'application/json'}
 

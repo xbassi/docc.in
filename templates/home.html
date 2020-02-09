@@ -72,15 +72,18 @@
 							List of Sections
 						</div>
 					</div>
+					
 					<div class="newppt_selected_header" id="selected_start">
 						<div class="newppt_selected_header_text">
 							Selected (<div class="num_selected">0</div>)
 						</div>
 					</div>
 
+					
+
 					<div class="newppt_selected_header" id="allstones_header">
 						<div class="newppt_selected_header_text">
-							Availabe Sections (<div class="num_sections"></div>)
+							Availabe Stones (<div class="num_sections"></div>)
 						</div>
 
 						<div class="add_stone_container">
@@ -92,6 +95,16 @@
 								id="section_search_bar" placeholder="Search Stone">
 						</div>
 					</div>
+					
+					<div class="newppt_selected_header" id="meta_slides_header">
+						<div class="newppt_selected_header_text">
+							Meta Slides
+						</div>
+						<div class="add_stone_container">
+							<div class="add_meta_button">Add Divider</div>
+						</div>				
+					</div>
+
 					<div class="templates">
 						<div class="newppt_selected_stone unselected sectiontemplate" >
 							<div class="newppt_selected_stone_slides_mast">
@@ -1017,6 +1030,7 @@
 
 		<div class="editmodal_container">
 			<div class="editmodal">
+				Edit Current Value
 				<textarea class="editmodal_input" rows="5" cols="50"></textarea>
 				<div class="saveeditmodal">
 					Save
@@ -1024,15 +1038,33 @@
 			</div>
 		</div>
 
+		<div class="add_meta_modal_container">
+			<div class="add_meta_modal">
+				Enter Meta Slide Text
+				<textarea class="add_meta_modal_input" rows="5" cols="50"></textarea>
+
+				<div class="add_meta_modal_buttonspace">
+					<div class="create_meta_slide">
+						Create Meta Slide
+					</div>
+					<div class="cancel_meta_slide">
+						Cancel 
+					</div>
+				</div>
+				
+			</div>
+		</div>
+
+
 		<div class="add_stone_modal_container">
 			<div class="add_stone_modal">
 				<form class="add_stone_form" enctype="multipart/form-data" >
 					<div class="add_stone_modal_head">
 						Add Slide Form
 					</div>
-					<div class="add_stone_input_container">Stone name: <input class="add_stone_input" type="text" name="stone_name"></div>
-					<div class="add_stone_input_container">Stone Description: <input class="add_stone_input" type="text" name="stone_description"></div>
-					<div class="add_stone_input_container">Stone Image Type: <input class="add_stone_input" type="text" name="stone_imagetype"></div>
+					<div class="add_stone_input_container">Stone name: <input class="add_stone_input stone_name" type="text" name="stone_name" placeholder="required"></div>
+					<div class="add_stone_input_container">Stone Description: <input class="add_stone_input stone_description" type="text" name="stone_description" placeholder="required, min 50 characters"></div>
+					<!-- <div class="add_stone_input_container">Stone Image Type: <input class="add_stone_input" type="text" name="stone_imagetype"></div> -->
 					<div class="add_stone_input_container">Stone Price: <input class="add_stone_input" type="text" name="stone_price"></div>
 					<div class="add_stone_input_container">Discount: <input class="add_stone_input" type="text" name="stone_discount"></div>
 					<div class="add_stone_input_container">Discounted Price: <input class="add_stone_input" type="text" name="stone_discounted_price"></div>
@@ -1041,7 +1073,7 @@
 					<div class="add_stone_input_container">Stone Processing: <input class="add_stone_input" type="text" name="stone_processing"></div>
 					<div class="add_stone_input_container">Stone Thickness: <input class="add_stone_input" type="text" name="stone_thickness"></div>
 
-					<div class="add_stone_input_container">Select Slide Image: <input type="file" name="stone_image"></div>
+					<div class="add_stone_input_container">Select Slide Image* <input class="stone_image" type="file" name="stone_image"></div>
 
 					<div class="add_stone_input_container">
 						<div class="add_stone_submit">Create Slide</div>
@@ -1065,6 +1097,26 @@
 			})
 
 			$(".add_stone_submit").click(function(){
+				var stone_name = $(".stone_name").val()
+				var stone_description = $(".stone_description").val()
+				var stone_image = $(".stone_image").val()
+
+				if (stone_description.length > 0 &&  stone_description.length < 50){
+
+					alert("Stone description must be atleast 50 characters.")
+					return false
+				}
+
+				if (stone_name.length == 0){
+					alert("Stone name is required.")
+					return false
+				}
+
+				if (stone_image == ''){
+					alert("Stone image is required.")
+					return false	
+				}
+
 				var form_data = new FormData($('form.add_stone_form')[0]);
 				$.ajax({
 					url: '/createslide',
@@ -1086,6 +1138,13 @@
 				$(".add_stone_modal_container").show()	
 			})
 
+			$(".add_meta_modal_container").hide()
+
+			$(".add_meta_button").click(function(){
+				$(".add_meta_modal_container").show()	
+			})
+
+
 			$(".editmodal_container").hide()
 
 			$(".saveeditmodal").click(function(){
@@ -1098,6 +1157,25 @@
 					.text(value)
 				$(".editing").removeClass("editing")
 				$(".editmodal_container").hide()
+			})
+
+			$(".cancel_meta_slide").click(function(){
+				$(".add_meta_modal_input").val("")
+				$(".add_meta_modal_container").hide()
+
+			})
+
+			$(".create_meta_slide").click(function(){
+				$.ajax({
+					url: '/create_meta_slide',
+					type: 'post',
+					data: {"Title":$(".add_meta_modal_input").val()},
+					dataType: 'json',
+					success: function(data) {
+							// console.log(data)
+						    location.reload()
+						}
+				});				
 			})
 
 
@@ -1170,7 +1248,6 @@
 								.append(text)
 									
 							}
-							
 
 							sec.find(".newppt_selected_stone_slides_container")
 								.append(slide)
@@ -1179,7 +1256,13 @@
 						}
 					}
 
-					$("#contenttab1").append(sec)
+					if (data[prop][0].type == "Single Slide") {
+						
+						$("#meta_slides_header").after(sec)
+					}
+					else{
+						$("#allstones_header").after(sec)					
+					}
 				}
 													
 				selectionSetup()
