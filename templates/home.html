@@ -72,7 +72,28 @@
 							List of Sections
 						</div>
 					</div>
-					
+					<div class="universal_controls">
+						Universal Checkbox Controls
+						<div class="universal_checkbox_container" >
+							Description: <input type="checkbox" class="universal_check universal_check_description" >
+
+							Price: <input type="checkbox" class="universal_check universal_check_price" >
+
+							Discount: <input type="checkbox" class="universal_check universal_check_discount" >
+
+							Discounted Price: <input type="checkbox" class="universal_check universal_check_discountedprice" >
+
+							Size: <input type="checkbox" class="universal_check universal_check_size" >
+
+							Quantity: <input type="checkbox" class="universal_check universal_check_quantity" >
+
+							Processing: <input type="checkbox" class="universal_check universal_check_processing" >
+
+							Thickness: <input type="checkbox" class="universal_check universal_check_thickness" >
+
+
+						</div>
+					</div>
 					<div class="newppt_selected_header" id="selected_start">
 						<div class="newppt_selected_header_text">
 							Selected (<div class="num_selected">0</div>)
@@ -1244,6 +1265,9 @@
 									.attr("name","B_"+data[prop][i].id+"_"+data[prop][i].elements[j].pid+"_"+data[prop][i].elements[j].key)
 
 								text.find(".text_selector_input")
+									.attr("checkbox_key",data[prop][i].elements[j].key.trim())
+
+								text.find(".text_selector_input")
 									.attr("value",data[prop][i].elements[j].value)
 
 								slide.find(".newppt_selected_stone_slide_body")
@@ -1270,6 +1294,77 @@
 				selectionSetup()
 				createPPT_button_handler()
 				search_handler()
+				universal_controls()
+			}
+
+			function universal_controls(){
+				$('.universal_check_description:checkbox').change(function() {
+					if($(this).is(":checked")) {
+					 	$('input[checkbox_key="Description 1"]').attr('checked',true)
+					}
+					else{
+						$('input[checkbox_key="Description 1"]').attr('checked',false)
+					}
+				});
+
+				$('.universal_check_price:checkbox').change(function() {
+					if($(this).is(":checked")) {
+					 	$('input[checkbox_key="Price"]').attr('checked',true)
+					}
+					else{
+						$('input[checkbox_key="Price"]').attr('checked',false)
+					}
+				});
+
+				$('.universal_check_discount:checkbox').change(function() {
+					if($(this).is(":checked")) {
+					 	$('input[checkbox_key="Discount"]').attr('checked',true)
+					}
+					else{
+						$('input[checkbox_key="Discount"]').attr('checked',false)
+					}
+				});
+
+				$('.universal_check_discountedprice:checkbox').change(function() {
+					if($(this).is(":checked")) {
+					 	$('input[checkbox_key="Discounted Price"]').attr('checked',true)
+					}
+					else{
+						$('input[checkbox_key="Discounted Price"]').attr('checked',false)
+					}
+				});
+				$('.universal_check_size:checkbox').change(function() {
+					if($(this).is(":checked")) {
+					 	$('input[checkbox_key="Size"]').attr('checked',true)
+					}
+					else{
+						$('input[checkbox_key="Size"]').attr('checked',false)
+					}
+				});
+				$('.universal_check_quantity:checkbox').change(function() {
+					if($(this).is(":checked")) {
+					 	$('input[checkbox_key="Quantity"]').attr('checked',true)
+					}
+					else{
+						$('input[checkbox_key="Quantity"]').attr('checked',false)
+					}
+				});
+				$('.universal_check_processing:checkbox').change(function() {
+					if($(this).is(":checked")) {
+					 	$('input[checkbox_key="Processing"]').attr('checked',true)
+					}
+					else{
+						$('input[checkbox_key="Processing"]').attr('checked',false)
+					}
+				});
+				$('.universal_check_thickness:checkbox').change(function() {
+					if($(this).is(":checked")) {
+					 	$('input[checkbox_key="Thickness"]').attr('checked',true)
+					}
+					else{
+						$('input[checkbox_key="Thickness"]').attr('checked',false)
+					}
+				}); 
 			}
 
 			function search_handler(){
