@@ -341,10 +341,10 @@ class Document(object):
 
 		newslide = None
 
-		# if details["stone_imagetype"] == "":
-		newslide = self.duplicate_slide(3)
-		# else:
-		# 	newslide = self.duplicate_slide(6)
+		if details["stone_imagetype"] == "":
+			newslide = self.duplicate_slide(3)
+		else:
+			newslide = self.duplicate_slide(6)
 
 		for key in details:
 
@@ -354,8 +354,8 @@ class Document(object):
 			elif key == "stone_description":
 				self.editParagraph(newslide,details[key])
 
-			# elif key == "stone_imagetype" and details["stone_imagetype"] != '' :
-			# 	self.editValue(newslide,"Bookmatch Image",details[key])
+			elif key == "stone_imagetype" and details["stone_imagetype"] != '' :
+				self.editValue(newslide,"Bookmatch Image",details[key])
 
 			elif key == "stone_price":
 				self.editKeyValue(newslide,"Price:",details[key])

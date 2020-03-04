@@ -75,22 +75,17 @@
 					<div class="universal_controls">
 						Universal Checkbox Controls
 						<div class="universal_checkbox_container" >
+							
+							Title: <input type="checkbox" class="universal_check universal_check_title" >
 							Description: <input type="checkbox" class="universal_check universal_check_description" >
-
 							Price: <input type="checkbox" class="universal_check universal_check_price" >
-
 							Discount: <input type="checkbox" class="universal_check universal_check_discount" >
-
 							Discounted Price: <input type="checkbox" class="universal_check universal_check_discountedprice" >
-
 							Size: <input type="checkbox" class="universal_check universal_check_size" >
-
 							Quantity: <input type="checkbox" class="universal_check universal_check_quantity" >
-
 							Processing: <input type="checkbox" class="universal_check universal_check_processing" >
-
 							Thickness: <input type="checkbox" class="universal_check universal_check_thickness" >
-
+							Footer: <input type="checkbox" class="universal_check universal_check_footer" >
 
 						</div>
 					</div>
@@ -1087,7 +1082,7 @@
 					</div>
 					<div class="add_stone_input_container">Stone name: <input class="add_stone_input stone_name" type="text" name="stone_name" placeholder="required"></div>
 					<div class="add_stone_input_container">Stone Description: <input class="add_stone_input stone_description" type="text" name="stone_description" placeholder="required, min 50 characters"></div>
-					<!-- <div class="add_stone_input_container">Stone Image Type: <input class="add_stone_input" type="text" name="stone_imagetype"></div> -->
+					<div class="add_stone_input_container">Stone Image Type: <input class="add_stone_input" type="text" name="stone_imagetype" placeholder="Leave empty for default details slide"></div>
 					<div class="add_stone_input_container">Stone Price: <input class="add_stone_input" type="text" name="stone_price"></div>
 					<div class="add_stone_input_container">Discount: <input class="add_stone_input" type="text" name="stone_discount"></div>
 					<div class="add_stone_input_container">Discounted Price: <input class="add_stone_input" type="text" name="stone_discounted_price"></div>
@@ -1298,6 +1293,25 @@
 			}
 
 			function universal_controls(){
+				
+				$('.universal_check_title:checkbox').change(function() {
+					if($(this).is(":checked")) {
+					 	$('input[checkbox_key="Title"]').attr('checked',true)
+					}
+					else{
+						$('input[checkbox_key="Title"]').attr('checked',false)
+					}
+				});
+
+				$('.universal_check_footer:checkbox').change(function() {
+					if($(this).is(":checked")) {
+					 	$('input[checkbox_key="Footer"]').attr('checked',true)
+					}
+					else{
+						$('input[checkbox_key="Footer"]').attr('checked',false)
+					}
+				});
+
 				$('.universal_check_description:checkbox').change(function() {
 					if($(this).is(":checked")) {
 					 	$('input[checkbox_key="Description 1"]').attr('checked',true)
