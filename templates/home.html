@@ -87,6 +87,9 @@
 							Thickness: <input type="checkbox" class="universal_check universal_check_thickness" >
 							Footer: <input type="checkbox" class="universal_check universal_check_footer" >
 
+							Discount Value: <input type="text" class="universal_check universal_input_discount" >
+							Price Markup: <input type="text" class="universal_check universal_input_pricemarkup" >
+
 						</div>
 					</div>
 					<div class="newppt_selected_header" id="selected_start">
@@ -1256,6 +1259,9 @@
 								text.find(".newppt_selected_stone_slide_text_value")
 									.text(data[prop][i].elements[j].value)
 
+								text.find(".newppt_selected_stone_slide_text_value")
+									.attr("original_value",data[prop][i].elements[j].value)
+
 								text.find(".text_selector_input")
 									.attr("name","B_"+data[prop][i].id+"_"+data[prop][i].elements[j].pid+"_"+data[prop][i].elements[j].key)
 
@@ -1264,6 +1270,12 @@
 
 								text.find(".text_selector_input")
 									.attr("value",data[prop][i].elements[j].value)
+
+								text.find(".text_selector_input")
+									.attr("original_value",data[prop][i].elements[j].value)
+
+								text.find(".newppt_selected_stone_slide_text_value")
+									.attr("checkbox_key",data[prop][i].elements[j].key.trim())
 
 								slide.find(".newppt_selected_stone_slide_body")
 								.append(text)
@@ -1378,6 +1390,47 @@
 					else{
 						$('input[checkbox_key="Thickness"]').attr('checked',false)
 					}
+				});
+
+				$('.universal_input_discount').on('input',function(e){
+				    $('.text_selector_input[checkbox_key="Discount"]').attr('value',$(".universal_input_discount").val())
+				    $('.newppt_selected_stone_slide_text_value[checkbox_key="Discount"]').text($(".universal_input_discount").val())
+
+				});
+
+				$('.universal_input_pricemarkup').on('input',function(e){
+
+					if ($(".universal_input_pricemarkup").val() == ""){
+						return
+					}
+
+				    $('.text_selector_input[checkbox_key="Price"]')
+				    	.each(function(index){
+				    		
+				    		var price = parseInt($(this).attr('original_value').match(/\d/g).join(""))
+				    		var suffix  = $(this).attr('original_value').replace(/[^a-zA-Z ]/gi, '')
+				    		// console.log(price)
+				    		// console.log((1.0 + (parseFloat($(".universal_input_pricemarkup").val())/100.0)))
+				    		var updated_price = price * (1.0 + (parseFloat($(".universal_input_pricemarkup").val())/100.0))
+				    		// console.log(updated_price)
+				    		updated_price = parseInt(updated_price).toString() + suffix
+							$(this).attr('value',updated_price)
+				    	})
+				    
+				    $('.newppt_selected_stone_slide_text_value[checkbox_key="Price"]')
+				    	.each(function(index){
+
+				    		var price = parseInt($(this).attr('original_value').match(/\d/g).join(""))
+				    		var suffix  = $(this).attr('original_value').replace(/[^a-zA-Z ]/gi, '')
+				    		
+				    		var updated_price = price * (1.0 + (parseFloat($(".universal_input_pricemarkup").val())/100.0))
+
+				    		updated_price = parseInt(updated_price).toString() + suffix
+							$(this).text(updated_price)
+				    	})
+				    	
+				    $('.newppt_selected_stone_slide_text_value[checkbox_key="Discount"]').text($(".universal_input_discount").val())
+
 				}); 
 			}
 
