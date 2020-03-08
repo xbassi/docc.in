@@ -750,12 +750,13 @@ body {
 	color:#444;
 	font-family: 'Asap', sans-serif;
 	display: flex;
-	flex-direction: row;
+	flex-direction: column;
 	flex-wrap: wrap;
+	max-height: 100px;
 }
 
 .universal_check{
-	margin-right:15px;
+	/*margin-right:15px;*/
 }
 
 
