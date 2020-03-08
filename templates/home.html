@@ -160,7 +160,11 @@
 									<i class="material-icons" style="font-size:20px">expand_more</i>
 								</div>
 							</div>
+
 							<div class="newppt_selected_stone_slide_body">
+								<div class="smallbutton delete_slide">
+									Permanently Delete Slide
+								</div>
 							</div>
 						</div>
 
@@ -1118,6 +1122,11 @@
 			})
 
 			$(".add_stone_submit").click(function(){
+				$(".infomodal_content").html("\
+						<div class='loader'></div>\
+						<br>\
+						Adding Stone Slide...")
+
 				var stone_name = $(".stone_name").val()
 				var stone_description = $(".stone_description").val()
 				var stone_image = $(".stone_image").val()
@@ -1243,6 +1252,9 @@
 							slide.find(".slide_selector_input")
 								.attr("value",data[prop][i].id)
 
+							slide.find(".delete_slide")
+								.attr("slide_id",data[prop][i].id)
+
 
 							slide.find(".newppt_selected_stone_slide_name")
 								.text(data[prop][i].type)
@@ -1303,6 +1315,28 @@
 				search_handler()
 				universal_controls()
 			}
+
+
+			function delete_handler(element){
+
+				element.find(".delete_slide").click(function(){
+
+					var slide_id = $(this).attr("slide_id")
+					console.log(slide_id)
+					$(".infomodal_content").html("\
+						<div class='loader'></div>\
+						<br>\
+						Deleting Slide...")
+					$.ajax({
+						url: '/rmslide/'+slide_id,
+						type: 'get',
+						success: function(){
+							location.reload()
+						}
+					})
+				})	
+			}
+
 
 			function universal_controls(){
 				
@@ -1395,6 +1429,23 @@
 				$('.universal_input_discount').on('input',function(e){
 				    $('.text_selector_input[checkbox_key="Discount"]').attr('value',$(".universal_input_discount").val())
 				    $('.newppt_selected_stone_slide_text_value[checkbox_key="Discount"]').text($(".universal_input_discount").val())
+				    
+				    if ($(".universal_input_discount").val() == ""){
+						return
+					}
+					var discount = parseFloat($(".universal_input_discount").val().match(/\d/g).join(""))
+
+				    var el = $('.newppt_selected_stone_slide_text_value[checkbox_key="Discount"]')
+				    			.parent().parent().find('.newppt_selected_stone_slide_text_value[checkbox_key="Price"]')
+
+				    el.each(function(index){
+				    	var suffix  = $(this).text().replace(/[^a-zA-Z ]/gi, '')
+				    	var price = parseInt($(this).text().match(/\d/g).join("")) * (1.0 - discount/100.0)
+				    	var dp = $(this).parent().parent().find('.newppt_selected_stone_slide_text_value[checkbox_key="Discounted Price"]')
+				    	dp.text(price.toString() + suffix)
+				    })
+				    // var price = el.text().match(/\d/g).join("")
+				    // console.log(price)
 
 				});
 
@@ -1475,6 +1526,7 @@
 						element.removeAttr("id")
 						element.removeClass("unselected")
 						element.attr("id",newid)
+						delete_handler(element)
 
 						element
 							.find(".slide_selector_input")

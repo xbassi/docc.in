@@ -50,6 +50,7 @@ def createslide():
 
 	return jsonify({'status':'success'}),200,{'ContentType':'application/json'}
 
+
 @app.route('/create_meta_slide', methods=['POST'])
 def createmetaslide():
 	
@@ -65,8 +66,15 @@ def get_newfile():
 
 	return send_file('new.ppt', attachment_filename='new.ppt',as_attachment=True)
 
+@app.route('/rmslide/<int:slide_id>', methods=['GET'])
+def rmslide(slide_id):
 
+	d = Document(main_doc)
+	d.deletebySlideID(slide_id)
+	d.save(main_doc)
 
+	return jsonify({'status':'success'}),200,{'ContentType':'application/json'}
+	
 
 if __name__ == '__main__':
 	app.run(threaded=True, port = 3000,debug=True)

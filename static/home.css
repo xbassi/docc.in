@@ -758,3 +758,17 @@ body {
 	margin-right:15px;
 }
 
+
+.smallbutton{
+	font-size: 11px;
+	/*color:#444;*/
+	font-family: 'Asap', sans-serif;
+}
+
+.delete_slide{
+	padding:5px;
+	color:#880000;
+	text-decoration: underline;
+	cursor: pointer;
+}
+
