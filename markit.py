@@ -381,7 +381,7 @@ class Document(object):
 
 		self.replace_image(newslide,imgpath)
 
-		self.save("Jumbo 3.pptx")
+		self.save(self.docname)
 
 
 	def create_meta_slide(self,title):
@@ -390,7 +390,7 @@ class Document(object):
 
 		self.editTitle(newslide, title)
 
-		self.save("Jumbo 3.pptx")
+		self.save(self.docname)
 		
 
 	def duplicate_slide(self,index):

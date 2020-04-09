@@ -109,9 +109,9 @@
 							Availabe Stones (<div class="num_sections"></div>)
 						</div>
 
-						<div class="add_stone_container">
+						<!-- <div class="add_stone_container">
 							<div class="add_stone_button">Add Stone</div>
-						</div>
+						</div> -->
 
 						<div class="section_search_bar_container">
 							<input type="text" name="section_search_bar" 
@@ -1444,9 +1444,9 @@
 
 				    el.each(function(index){
 				    	var suffix  = $(this).text().replace(/[^a-zA-Z ]/gi, '')
-				    	var price = parseInt($(this).text().match(/\d/g).join("")) * (1.0 - discount/100.0)
+				    	var price = parseInt(parseInt($(this).text().match(/\d/g).join("")) * (1.0 - discount/100.0)).toLocaleString('en-IN')
 				    	var dp = $(this).parent().parent().find('.newppt_selected_stone_slide_text_value[checkbox_key="Discounted Price"]')
-				    	dp.text(price.toString() + suffix)
+				    	dp.text(price + suffix)
 				    })
 				    // var price = el.text().match(/\d/g).join("")
 				    // console.log(price)
@@ -1468,7 +1468,7 @@
 				    		// console.log((1.0 + (parseFloat($(".universal_input_pricemarkup").val())/100.0)))
 				    		var updated_price = price * (1.0 + (parseFloat($(".universal_input_pricemarkup").val())/100.0))
 				    		// console.log(updated_price)
-				    		updated_price = parseInt(updated_price).toString() + suffix
+				    		updated_price = parseInt(updated_price).toLocaleString('en-IN') + suffix
 							$(this).attr('value',updated_price)
 				    	})
 				    
@@ -1480,7 +1480,7 @@
 				    		
 				    		var updated_price = price * (1.0 + (parseFloat($(".universal_input_pricemarkup").val())/100.0))
 
-				    		updated_price = parseInt(updated_price).toString() + suffix
+				    		updated_price = parseInt(updated_price).toLocaleString('en-IN') + suffix
 							$(this).text(updated_price)
 				    	})
 				    	
