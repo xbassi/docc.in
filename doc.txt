@@ -1,4 +1,0 @@
-Menu
-	Create New PPT
-	All PPTs
-	Shared PPTS

@@ -8,7 +8,7 @@ app = Flask('doccback')
 
 app.config['UPLOAD_FOLDER'] = "./static/"
 
-main_doc = "Jumbo 3.pptx"
+main_doc = "base.pptx"
 
 @app.route('/')
 def webprint():
