@@ -86,23 +86,32 @@
 							Thickness: <input type="checkbox" class="universal_check universal_check_thickness" >
 							
 							Price: <input type="checkbox" class="universal_check universal_check_price" >
-							Price Markup: <input type="text" class="universal_check universal_input_pricemarkup" >
+							<!-- Price Markup: <input type="text" class="universal_check universal_input_pricemarkup" > -->
 							Discounted Price: <input type="checkbox" class="universal_check universal_check_discountedprice" >
 							
 							Discount: <input type="checkbox" class="universal_check universal_check_discount" >
-							Discount Value: <input type="text" class="universal_check universal_input_discount" >
-							
-							
+							<!-- Discount Value: <input type="text" class="universal_check universal_input_discount" > -->
 
 						</div>
 					</div>
+
 					<div class="newppt_selected_header" id="selected_start">
 						<div class="newppt_selected_header_text">
 							Selected (<div class="num_selected">0</div>)
 						</div>
+						<div class="abutton" id="collapse">
+							Collapse all
+						</div>
 					</div>
 
-					
+					<div class="newppt_selected_header" id="meta_slides_header">
+						<div class="newppt_selected_header_text">
+							Meta Slides
+						</div>
+						<div class="add_stone_container">
+							<div class="add_meta_button">Add Divider</div>
+						</div>				
+					</div>
 
 					<div class="newppt_selected_header" id="allstones_header">
 						<div class="newppt_selected_header_text">
@@ -119,14 +128,6 @@
 						</div>
 					</div>
 					
-					<div class="newppt_selected_header" id="meta_slides_header">
-						<div class="newppt_selected_header_text">
-							Meta Slides
-						</div>
-						<div class="add_stone_container">
-							<div class="add_meta_button">Add Divider</div>
-						</div>				
-					</div>
 
 					<div class="templates">
 						<div class="newppt_selected_stone unselected sectiontemplate" >
@@ -185,6 +186,9 @@
 							</div>
 							<div class="newppt_selected_stone_slide_text_edit pointer">
 								<i class="material-icons" style="font-size:13px">mode_edit</i>
+							</div>
+							<div class="abutton calculate_button">
+								Calculate Me
 							</div>
 							
 						</div>
@@ -1269,6 +1273,23 @@
 								var text = $(".slidetexttemplate").clone()
 								text.removeClass("slidetexttemplate")
 
+								if (!data[prop][i].elements[j].key.includes("Price") && !data[prop][i].elements[j].key.includes("Discount")){
+									text.find(".calculate_button").hide()
+								}
+								else if (data[prop][i].elements[j].key.includes("Price") && !data[prop][i].elements[j].key.includes("Discount")){
+									text.find(".calculate_button").addClass("calculate_price")
+									text.find(".newppt_selected_stone_slide_text_value").addClass("price_value")
+								}
+								else if (!data[prop][i].elements[j].key.includes("Price") && data[prop][i].elements[j].key.includes("Discount")){
+									text.find(".calculate_button").addClass("calculate_discount")
+									text.find(".newppt_selected_stone_slide_text_value").addClass("discount_value")
+								}
+								else if (data[prop][i].elements[j].key.includes("Price") && data[prop][i].elements[j].key.includes("Discount")){
+									text.find(".calculate_button").addClass("calculate_discountedprice")
+									text.find(".newppt_selected_stone_slide_text_value").addClass("discountedprice_value")
+								}
+
+
 								text.find(".newppt_selected_stone_slide_text_key")
 									.text(data[prop][i].elements[j].key + " :")
 
@@ -1318,6 +1339,49 @@
 				createPPT_button_handler()
 				search_handler()
 				universal_controls()
+
+			}
+
+
+			function calculate_handler(e){
+				e.find(".calculate_discountedprice").click(function(){
+					
+					var discount_value = $(this).parent().parent().find(".discount_value").text()
+					discount_value = parseInt(discount_value.replace(/[^0-9]/g,''));
+
+					var price_value = $(this).parent().parent().find(".price_value").text()
+					price_value = parseInt(price_value.replace(/[^0-9]/g,''));
+
+					var discountedprice = parseInt(price_value - ((price_value*discount_value)/100.0)).toString()
+
+					$(this).parent().find(".discountedprice_value").text("Rs."+discountedprice+" per sq.ft.")
+				})
+
+				e.find(".calculate_price").click(function(){
+					
+					var discount_value = $(this).parent().parent().find(".discount_value").text()
+					discount_value = parseInt(discount_value.replace(/[^0-9]/g,''));
+
+					var discountedprice_value = $(this).parent().parent().find(".discountedprice_value").text()
+					discountedprice_value = parseInt(discountedprice_value.replace(/[^0-9]/g,''));
+
+					var price = parseInt((discountedprice_value*100)/(100-discount_value) ).toString()
+
+					$(this).parent().find(".price_value").text("Rs."+price+" per sq.ft.")
+				})
+
+				e.find(".calculate_discount").click(function(){
+					
+					var discountedprice_value = $(this).parent().parent().find(".discountedprice_value").text()
+					discountedprice_value = parseInt(discountedprice_value.replace(/[^0-9]/g,''));
+
+					var price_value = $(this).parent().parent().find(".price_value").text()
+					price_value = parseInt(price_value.replace(/[^0-9]/g,''));
+
+					var discount = parseInt( ((price_value - discountedprice_value)*100)/price_value ).toString()
+
+					$(this).parent().find(".discount_value").text(discount+"%")
+				})
 			}
 
 
@@ -1489,6 +1553,12 @@
 				}); 
 			}
 
+
+			$("#collapse").click(function(){
+				$(".is_selected").find(".newppt_selected_stone_slides_container").hide()
+			})
+
+
 			function search_handler(){
 
 				$("#section_search_bar").on("keyup", function() {
@@ -1527,9 +1597,14 @@
 					{
 
 						var element = $("#" +id).clone()
+
+						calculate_handler(element)
+
 						element.removeAttr("id")
 						element.removeClass("unselected")
+						element.addClass("is_selected")
 						element.attr("id",newid)
+
 						delete_handler(element)
 
 						element
@@ -1576,7 +1651,7 @@
 						element.find(".newppt_selected_stone_slide_text_edit")
 							.addClass(oldid+"_edittext")
 
-						element.insertBefore("#allstones_header")
+						element.insertBefore("#meta_slides_header")
 
 						var selected_count = Number($(".num_selected").text())
 						$(".num_selected").text((selected_count+1).toString())

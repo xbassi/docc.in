@@ -732,6 +732,17 @@ body {
 	cursor: pointer;	
 }
 
+.abutton{
+	font-size: 10px;
+	padding:3px;
+	border:1px solid #999;
+	font-family: 'Asap', sans-serif;
+	background: #FFF;
+	color:#444;
+	border-radius: 5px;
+	cursor: pointer;	
+}
+
 .universal_controls{
 	padding: 5px;
 	font-size: 13px;
