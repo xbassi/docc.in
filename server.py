@@ -1,10 +1,11 @@
 from flask import Flask, render_template,jsonify,request,send_file
 from markit import Document
-
+import os
 import pprint
 
+
 app = Flask('doccback')
-# webcode = open('webcode.html').read() - not needed
+
 
 app.config['UPLOAD_FOLDER'] = "./static/"
 
