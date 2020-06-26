@@ -1338,7 +1338,7 @@
 				selectionSetup()
 				createPPT_button_handler()
 				search_handler()
-				universal_controls()
+				// universal_controls()
 
 			}
 
@@ -1410,151 +1410,396 @@
 			}
 
 
-			function universal_controls(){
+			function universal_controls(e){
 				
-				$('.universal_check_title:checkbox').change(function() {
-					if($(this).is(":checked")) {
-					 	$('input[checkbox_key="Title"]').attr('checked',true)
+				e.find('input[checkbox_key="Title"]').click(function() {
+
+					if($(this).is(':checked')) {
+					 	// e.find('input[checkbox_key="Title"]').attr('checked',true)
+					 	$(this).attr('checked',true)
 					}
 					else{
-						$('input[checkbox_key="Title"]').attr('checked',false)
+						// e.find('input[checkbox_key="Title"]').attr('checked',false)
+						$(this).attr('checked',false)
 					}
+				});
+
+				e.find('input[checkbox_key="Footer"]').click(function() {
+
+					if($(this).is(':checked')) {
+					 	// e.find('input[checkbox_key="Title"]').attr('checked',true)
+					 	$(this).attr('checked',true)
+					}
+					else{
+						// e.find('input[checkbox_key="Title"]').attr('checked',false)
+						$(this).attr('checked',false)
+					}
+				});
+
+				e.find('input[checkbox_key="Description 1"]').click(function() {
+
+					if($(this).is(':checked')) {
+					 	// e.find('input[checkbox_key="Title"]').attr('checked',true)
+					 	$(this).attr('checked',true)
+					}
+					else{
+						// e.find('input[checkbox_key="Title"]').attr('checked',false)
+						$(this).attr('checked',false)
+					}
+				});
+
+				e.find('input[checkbox_key="Price"]').click(function() {
+
+					if($(this).is(':checked')) {
+					 	// e.find('input[checkbox_key="Title"]').attr('checked',true)
+					 	$(this).attr('checked',true)
+					}
+					else{
+						// e.find('input[checkbox_key="Title"]').attr('checked',false)
+						$(this).attr('checked',false)
+					}
+				});
+
+				e.find('input[checkbox_key="Discount"]').click(function() {
+
+					if($(this).is(':checked')) {
+					 	// e.find('input[checkbox_key="Title"]').attr('checked',true)
+					 	$(this).attr('checked',true)
+					}
+					else{
+						// e.find('input[checkbox_key="Title"]').attr('checked',false)
+						$(this).attr('checked',false)
+					}
+				});
+
+				e.find('input[checkbox_key="Discounted Price"]').click(function() {
+
+					if($(this).is(':checked')) {
+					 	// e.find('input[checkbox_key="Title"]').attr('checked',true)
+					 	$(this).attr('checked',true)
+					}
+					else{
+						// e.find('input[checkbox_key="Title"]').attr('checked',false)
+						$(this).attr('checked',false)
+					}
+				});
+
+				e.find('input[checkbox_key="Size"]').click(function() {
+
+					if($(this).is(':checked')) {
+					 	// e.find('input[checkbox_key="Title"]').attr('checked',true)
+					 	$(this).attr('checked',true)
+					}
+					else{
+						// e.find('input[checkbox_key="Title"]').attr('checked',false)
+						$(this).attr('checked',false)
+					}
+				});
+
+				e.find('input[checkbox_key="Quantity"]').click(function() {
+
+					if($(this).is(':checked')) {
+					 	// e.find('input[checkbox_key="Title"]').attr('checked',true)
+					 	$(this).attr('checked',true)
+					}
+					else{
+						// e.find('input[checkbox_key="Title"]').attr('checked',false)
+						$(this).attr('checked',false)
+					}
+				});
+
+				e.find('input[checkbox_key="Processing"]').click(function() {
+
+					if($(this).is(':checked')) {
+					 	// e.find('input[checkbox_key="Title"]').attr('checked',true)
+					 	$(this).attr('checked',true)
+					}
+					else{
+						// e.find('input[checkbox_key="Title"]').attr('checked',false)
+						$(this).attr('checked',false)
+					}
+				});
+
+				e.find('input[checkbox_key="Thickness"]').click(function() {
+
+					if($(this).is(':checked')) {
+					 	// e.find('input[checkbox_key="Title"]').attr('checked',true)
+					 	$(this).attr('checked',true)
+					}
+					else{
+						// e.find('input[checkbox_key="Title"]').attr('checked',false)
+						$(this).attr('checked',false)
+					}
+				});
+
+
+
+
+
+				$('.universal_check_title:checkbox').change(function() {
+
+					if($(this).is(":checked")==true && e.find('input[checkbox_key="Title"]').is(":checked")==false) {
+					 	// e.find('input[checkbox_key="Title"]').attr('checked',true)
+					 	e.find('input[checkbox_key="Title"]').attr('checked',true)
+					}
+					else if($(this).is(":checked")==false && e.find('input[checkbox_key="Title"]').is(":checked")==true) {
+					 	// e.find('input[checkbox_key="Title"]').attr('checked',true)
+					 	e.find('input[checkbox_key="Title"]').attr('checked',false)
+					}
+					else if($(this).is(":checked")==true && e.find('input[checkbox_key="Title"]').is(":checked")==true) {
+					 	// e.find('input[checkbox_key="Title"]').attr('checked',true)
+					 	// e.find('input[checkbox_key="Title"]').attr('checked',true)
+					}
+					else if($(this).is(":checked")==false && e.find('input[checkbox_key="Title"]').is(":checked")==false) {
+					 	// e.find('input[checkbox_key="Title"]').attr('checked',true)
+					 	// e.find('input[checkbox_key="Title"]').attr('checked',true)
+					}					
 				});
 
 				$('.universal_check_footer:checkbox').change(function() {
-					if($(this).is(":checked")) {
-					 	$('input[checkbox_key="Footer"]').attr('checked',true)
+				
+
+					if($(this).is(":checked")==true && e.find('input[checkbox_key="Footer"]').is(":checked")==false) {
+					 	// e.find('input[checkbox_key="Footer"]').attr('checked',true)
+					 	e.find('input[checkbox_key="Footer"]').attr('checked',true)
 					}
-					else{
-						$('input[checkbox_key="Footer"]').attr('checked',false)
+					else if($(this).is(":checked")==false && e.find('input[checkbox_key="Footer"]').is(":checked")==true) {
+					 	// e.find('input[checkbox_key="Footer"]').attr('checked',true)
+					 	e.find('input[checkbox_key="Footer"]').attr('checked',false)
 					}
+					else if($(this).is(":checked")==true && e.find('input[checkbox_key="Footer"]').is(":checked")==true) {
+					 	// e.find('input[checkbox_key="Footer"]').attr('checked',true)
+					 	// e.find('input[checkbox_key="Footer"]').attr('checked',true)
+					}
+					else if($(this).is(":checked")==false && e.find('input[checkbox_key="Footer"]').is(":checked")==false) {
+					 	// e.find('input[checkbox_key="Footer"]').attr('checked',true)
+					 	// e.find('input[checkbox_key="Footer"]').attr('checked',true)
+					}
+
 				});
 
 				$('.universal_check_description:checkbox').change(function() {
-					if($(this).is(":checked")) {
-					 	$('input[checkbox_key="Description 1"]').attr('checked',true)
+				
+
+					if($(this).is(":checked")==true && e.find('input[checkbox_key="Description 1"]').is(":checked")==false) {
+					 	// e.find('input[checkbox_key="Description 1"]').attr('checked',true)
+					 	e.find('input[checkbox_key="Description 1"]').attr('checked',true)
 					}
-					else{
-						$('input[checkbox_key="Description 1"]').attr('checked',false)
+					else if($(this).is(":checked")==false && e.find('input[checkbox_key="Description 1"]').is(":checked")==true) {
+					 	// e.find('input[checkbox_key="Description 1"]').attr('checked',true)
+					 	e.find('input[checkbox_key="Description 1"]').attr('checked',false)
 					}
+					else if($(this).is(":checked")==true && e.find('input[checkbox_key="Description 1"]').is(":checked")==true) {
+					 	// e.find('input[checkbox_key="Description 1"]').attr('checked',true)
+					 	// e.find('input[checkbox_key="Description 1"]').attr('checked',true)
+					}
+					else if($(this).is(":checked")==false && e.find('input[checkbox_key="Description 1"]').is(":checked")==false) {
+					 	// e.find('input[checkbox_key="Description 1"]').attr('checked',true)
+					 	// e.find('input[checkbox_key="Description 1"]').attr('checked',true)
+					}
+
 				});
 
 				$('.universal_check_price:checkbox').change(function() {
-					if($(this).is(":checked")) {
-					 	$('input[checkbox_key="Price"]').attr('checked',true)
+					
+
+					if($(this).is(":checked")==true && e.find('input[checkbox_key="Price"]').is(":checked")==false) {
+					 	// e.find('input[checkbox_key="Price"]').attr('checked',true)
+					 	e.find('input[checkbox_key="Price"]').attr('checked',true)
 					}
-					else{
-						$('input[checkbox_key="Price"]').attr('checked',false)
+					else if($(this).is(":checked")==false && e.find('input[checkbox_key="Price"]').is(":checked")==true) {
+					 	// e.find('input[checkbox_key="Price"]').attr('checked',true)
+					 	e.find('input[checkbox_key="Price"]').attr('checked',false)
 					}
+					else if($(this).is(":checked")==true && e.find('input[checkbox_key="Price"]').is(":checked")==true) {
+					 	// e.find('input[checkbox_key="Price"]').attr('checked',true)
+					 	// e.find('input[checkbox_key="Price"]').attr('checked',true)
+					}
+					else if($(this).is(":checked")==false && e.find('input[checkbox_key="Price"]').is(":checked")==false) {
+					 	// e.find('input[checkbox_key="Price"]').attr('checked',true)
+					 	// e.find('input[checkbox_key="Price"]').attr('checked',true)
+					}
+
 				});
 
 				$('.universal_check_discount:checkbox').change(function() {
-					if($(this).is(":checked")) {
-					 	$('input[checkbox_key="Discount"]').attr('checked',true)
+
+					if($(this).is(":checked")==true && e.find('input[checkbox_key="Discount"]').is(":checked")==false) {
+					 	// e.find('input[checkbox_key="Discount"]').attr('checked',true)
+					 	e.find('input[checkbox_key="Discount"]').attr('checked',true)
 					}
-					else{
-						$('input[checkbox_key="Discount"]').attr('checked',false)
+					else if($(this).is(":checked")==false && e.find('input[checkbox_key="Discount"]').is(":checked")==true) {
+					 	// e.find('input[checkbox_key="Discount"]').attr('checked',true)
+					 	e.find('input[checkbox_key="Discount"]').attr('checked',false)
 					}
+					else if($(this).is(":checked")==true && e.find('input[checkbox_key="Discount"]').is(":checked")==true) {
+					 	// e.find('input[checkbox_key="Discount"]').attr('checked',true)
+					 	// e.find('input[checkbox_key="Discount"]').attr('checked',true)
+					}
+					else if($(this).is(":checked")==false && e.find('input[checkbox_key="Discount"]').is(":checked")==false) {
+					 	// e.find('input[checkbox_key="Discount"]').attr('checked',true)
+					 	// e.find('input[checkbox_key="Discount"]').attr('checked',true)
+					}
+
 				});
 
 				$('.universal_check_discountedprice:checkbox').change(function() {
-					if($(this).is(":checked")) {
-					 	$('input[checkbox_key="Discounted Price"]').attr('checked',true)
+					
+
+					if($(this).is(":checked")==true && e.find('input[checkbox_key="Discounted Price"]').is(":checked")==false) {
+					 	// e.find('input[checkbox_key="Discounted Price"]').attr('checked',true)
+					 	e.find('input[checkbox_key="Discounted Price"]').attr('checked',true)
 					}
-					else{
-						$('input[checkbox_key="Discounted Price"]').attr('checked',false)
+					else if($(this).is(":checked")==false && e.find('input[checkbox_key="Discounted Price"]').is(":checked")==true) {
+					 	// e.find('input[checkbox_key="Discounted Price"]').attr('checked',true)
+					 	e.find('input[checkbox_key="Discounted Price"]').attr('checked',false)
 					}
+					else if($(this).is(":checked")==true && e.find('input[checkbox_key="Discounted Price"]').is(":checked")==true) {
+					 	// e.find('input[checkbox_key="Discounted Price"]').attr('checked',true)
+					 	// e.find('input[checkbox_key="Discounted Price"]').attr('checked',true)
+					}
+					else if($(this).is(":checked")==false && e.find('input[checkbox_key="Discounted Price"]').is(":checked")==false) {
+					 	// e.find('input[checkbox_key="Discounted Price"]').attr('checked',true)
+					 	// e.find('input[checkbox_key="Discounted Price"]').attr('checked',true)
+					}
+
 				});
 				$('.universal_check_size:checkbox').change(function() {
-					if($(this).is(":checked")) {
-					 	$('input[checkbox_key="Size"]').attr('checked',true)
+					
+
+					if($(this).is(":checked")==true && e.find('input[checkbox_key="Size"]').is(":checked")==false) {
+					 	// e.find('input[checkbox_key="Size"]').attr('checked',true)
+					 	e.find('input[checkbox_key="Size"]').attr('checked',true)
 					}
-					else{
-						$('input[checkbox_key="Size"]').attr('checked',false)
+					else if($(this).is(":checked")==false && e.find('input[checkbox_key="Size"]').is(":checked")==true) {
+					 	// e.find('input[checkbox_key="Size"]').attr('checked',true)
+					 	e.find('input[checkbox_key="Size"]').attr('checked',false)
+					}
+					else if($(this).is(":checked")==true && e.find('input[checkbox_key="Size"]').is(":checked")==true) {
+					 	// e.find('input[checkbox_key="Size"]').attr('checked',true)
+					 	// e.find('input[checkbox_key="Size"]').attr('checked',true)
+					}
+					else if($(this).is(":checked")==false && e.find('input[checkbox_key="Size"]').is(":checked")==false) {
+					 	// e.find('input[checkbox_key="Size"]').attr('checked',true)
+					 	// e.find('input[checkbox_key="Size"]').attr('checked',true)
 					}
 				});
 				$('.universal_check_quantity:checkbox').change(function() {
-					if($(this).is(":checked")) {
-					 	$('input[checkbox_key="Quantity"]').attr('checked',true)
+				
+					if($(this).is(":checked")==true && e.find('input[checkbox_key="Quantity"]').is(":checked")==false) {
+					 	// e.find('input[checkbox_key="Quantity"]').attr('checked',true)
+					 	e.find('input[checkbox_key="Quantity"]').attr('checked',true)
 					}
-					else{
-						$('input[checkbox_key="Quantity"]').attr('checked',false)
+					else if($(this).is(":checked")==false && e.find('input[checkbox_key="Quantity"]').is(":checked")==true) {
+					 	// e.find('input[checkbox_key="Quantity"]').attr('checked',true)
+					 	e.find('input[checkbox_key="Quantity"]').attr('checked',false)
+					}
+					else if($(this).is(":checked")==true && e.find('input[checkbox_key="Quantity"]').is(":checked")==true) {
+					 	// e.find('input[checkbox_key="Quantity"]').attr('checked',true)
+					 	// e.find('input[checkbox_key="Quantity"]').attr('checked',true)
+					}
+					else if($(this).is(":checked")==false && e.find('input[checkbox_key="Quantity"]').is(":checked")==false) {
+					 	// e.find('input[checkbox_key="Quantity"]').attr('checked',true)
+					 	// e.find('input[checkbox_key="Quantity"]').attr('checked',true)
 					}
 				});
 				$('.universal_check_processing:checkbox').change(function() {
-					if($(this).is(":checked")) {
-					 	$('input[checkbox_key="Processing"]').attr('checked',true)
+				
+
+					if($(this).is(":checked")==true && e.find('input[checkbox_key="Processing"]').is(":checked")==false) {
+					 	// e.find('input[checkbox_key="Processing"]').attr('checked',true)
+					 	e.find('input[checkbox_key="Processing"]').attr('checked',true)
 					}
-					else{
-						$('input[checkbox_key="Processing"]').attr('checked',false)
+					else if($(this).is(":checked")==false && e.find('input[checkbox_key="Processing"]').is(":checked")==true) {
+					 	// e.find('input[checkbox_key="Processing"]').attr('checked',true)
+					 	e.find('input[checkbox_key="Processing"]').attr('checked',false)
+					}
+					else if($(this).is(":checked")==true && e.find('input[checkbox_key="Processing"]').is(":checked")==true) {
+					 	// e.find('input[checkbox_key="Processing"]').attr('checked',true)
+					 	// e.find('input[checkbox_key="Processing"]').attr('checked',true)
+					}
+					else if($(this).is(":checked")==false && e.find('input[checkbox_key="Processing"]').is(":checked")==false) {
+					 	// e.find('input[checkbox_key="Processing"]').attr('checked',true)
+					 	// e.find('input[checkbox_key="Processing"]').attr('checked',true)
 					}
 				});
 				$('.universal_check_thickness:checkbox').change(function() {
-					if($(this).is(":checked")) {
-					 	$('input[checkbox_key="Thickness"]').attr('checked',true)
+				
+					if($(this).is(":checked")==true && e.find('input[checkbox_key="Thickness"]').is(":checked")==false) {
+					 	// e.find('input[checkbox_key="Thickness"]').attr('checked',true)
+					 	e.find('input[checkbox_key="Thickness"]').attr('checked',true)
 					}
-					else{
-						$('input[checkbox_key="Thickness"]').attr('checked',false)
+					else if($(this).is(":checked")==false && e.find('input[checkbox_key="Thickness"]').is(":checked")==true) {
+					 	// e.find('input[checkbox_key="Thickness"]').attr('checked',true)
+					 	e.find('input[checkbox_key="Thickness"]').attr('checked',false)
+					}
+					else if($(this).is(":checked")==true && e.find('input[checkbox_key="Thickness"]').is(":checked")==true) {
+					 	// e.find('input[checkbox_key="Thickness"]').attr('checked',true)
+					 	// e.find('input[checkbox_key="Thickness"]').attr('checked',true)
+					}
+					else if($(this).is(":checked")==false && e.find('input[checkbox_key="Thickness"]').is(":checked")==false) {
+					 	// e.find('input[checkbox_key="Thickness"]').attr('checked',true)
+					 	// e.find('input[checkbox_key="Thickness"]').attr('checked',true)
 					}
 				});
 
-				$('.universal_input_discount').on('input',function(e){
-				    $('.text_selector_input[checkbox_key="Discount"]').attr('value',$(".universal_input_discount").val())
-				    $('.newppt_selected_stone_slide_text_value[checkbox_key="Discount"]').text($(".universal_input_discount").val())
+				// $('.universal_input_discount').on('input',function(e){
+				//     $('.text_selector_input[checkbox_key="Discount"]').attr('value',$(".universal_input_discount").val())
+				//     $('.newppt_selected_stone_slide_text_value[checkbox_key="Discount"]').text($(".universal_input_discount").val())
 				    
-				    if ($(".universal_input_discount").val() == ""){
-						return
-					}
-					var discount = parseFloat($(".universal_input_discount").val().match(/\d/g).join(""))
+				//     if ($(".universal_input_discount").val() == ""){
+				// 		return
+				// 	}
+				// 	var discount = parseFloat($(".universal_input_discount").val().match(/\d/g).join(""))
 
-				    var el = $('.newppt_selected_stone_slide_text_value[checkbox_key="Discount"]')
-				    			.parent().parent().find('.newppt_selected_stone_slide_text_value[checkbox_key="Price"]')
+				//     var el = $('.newppt_selected_stone_slide_text_value[checkbox_key="Discount"]')
+				//     			.parent().parent().find('.newppt_selected_stone_slide_text_value[checkbox_key="Price"]')
 
-				    el.each(function(index){
-				    	var suffix  = $(this).text().replace(/[^a-zA-Z ]/gi, '')
-				    	var price = parseInt(parseInt($(this).text().match(/\d/g).join("")) * (1.0 - discount/100.0)).toLocaleString('en-IN')
-				    	var dp = $(this).parent().parent().find('.newppt_selected_stone_slide_text_value[checkbox_key="Discounted Price"]')
-				    	dp.text(price + suffix)
-				    })
-				    // var price = el.text().match(/\d/g).join("")
-				    // console.log(price)
+				//     el.each(function(index){
+				//     	var suffix  = $(this).text().replace(/[^a-zA-Z ]/gi, '')
+				//     	var price = parseInt(parseInt($(this).text().match(/\d/g).join("")) * (1.0 - discount/100.0)).toLocaleString('en-IN')
+				//     	var dp = $(this).parent().parent().find('.newppt_selected_stone_slide_text_value[checkbox_key="Discounted Price"]')
+				//     	dp.text(price + suffix)
+				//     })
+				//     // var price = el.text().match(/\d/g).join("")
+				//     // console.log(price)
 
-				});
+				// });
 
-				$('.universal_input_pricemarkup').on('input',function(e){
+				// $('.universal_input_pricemarkup').on('input',function(e){
 
-					if ($(".universal_input_pricemarkup").val() == ""){
-						return
-					}
+				// 	if ($(".universal_input_pricemarkup").val() == ""){
+				// 		return
+				// 	}
 
-				    $('.text_selector_input[checkbox_key="Price"]')
-				    	.each(function(index){
+				//     $('.text_selector_input[checkbox_key="Price"]')
+				//     	.each(function(index){
 				    		
-				    		var price = parseInt($(this).attr('original_value').match(/\d/g).join(""))
-				    		var suffix  = $(this).attr('original_value').replace(/[^a-zA-Z ]/gi, '')
-				    		// console.log(price)
-				    		// console.log((1.0 + (parseFloat($(".universal_input_pricemarkup").val())/100.0)))
-				    		var updated_price = price * (1.0 + (parseFloat($(".universal_input_pricemarkup").val())/100.0))
-				    		// console.log(updated_price)
-				    		updated_price = parseInt(updated_price).toLocaleString('en-IN') + suffix
-							$(this).attr('value',updated_price)
-				    	})
+				//     		var price = parseInt($(this).attr('original_value').match(/\d/g).join(""))
+				//     		var suffix  = $(this).attr('original_value').replace(/[^a-zA-Z ]/gi, '')
+				//     		// console.log(price)
+				//     		// console.log((1.0 + (parseFloat($(".universal_input_pricemarkup").val())/100.0)))
+				//     		var updated_price = price * (1.0 + (parseFloat($(".universal_input_pricemarkup").val())/100.0))
+				//     		// console.log(updated_price)
+				//     		updated_price = parseInt(updated_price).toLocaleString('en-IN') + suffix
+				// 			$(this).attr('value',updated_price)
+				//     	})
 				    
-				    $('.newppt_selected_stone_slide_text_value[checkbox_key="Price"]')
-				    	.each(function(index){
+				//     $('.newppt_selected_stone_slide_text_value[checkbox_key="Price"]')
+				//     	.each(function(index){
 
-				    		var price = parseInt($(this).attr('original_value').match(/\d/g).join(""))
-				    		var suffix  = $(this).attr('original_value').replace(/[^a-zA-Z ]/gi, '')
+				//     		var price = parseInt($(this).attr('original_value').match(/\d/g).join(""))
+				//     		var suffix  = $(this).attr('original_value').replace(/[^a-zA-Z ]/gi, '')
 				    		
-				    		var updated_price = price * (1.0 + (parseFloat($(".universal_input_pricemarkup").val())/100.0))
+				//     		var updated_price = price * (1.0 + (parseFloat($(".universal_input_pricemarkup").val())/100.0))
 
-				    		updated_price = parseInt(updated_price).toLocaleString('en-IN') + suffix
-							$(this).text(updated_price)
-				    	})
+				//     		updated_price = parseInt(updated_price).toLocaleString('en-IN') + suffix
+				// 			$(this).text(updated_price)
+				//     	})
 				    	
-				    $('.newppt_selected_stone_slide_text_value[checkbox_key="Discount"]').text($(".universal_input_discount").val())
+				//     $('.newppt_selected_stone_slide_text_value[checkbox_key="Discount"]').text($(".universal_input_discount").val())
 
-				}); 
+				// }); 
 			}
 
 
@@ -1573,6 +1818,8 @@
 				    });
 				  });
 			}
+
+
 
 			function selectionSetup(){
 				$(".newppt_selected_stone_icon")
@@ -1603,6 +1850,7 @@
 						var element = $("#" +id).clone()
 
 						calculate_handler(element)
+						universal_controls(element)
 
 						element.removeAttr("id")
 						element.removeClass("unselected")
