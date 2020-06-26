@@ -1355,6 +1355,7 @@
 					var discountedprice = parseInt(price_value - ((price_value*discount_value)/100.0)).toString()
 
 					$(this).parent().find(".discountedprice_value").text("Rs."+discountedprice+" per sq.ft.")
+					$(this).parent().find(".text_selector_input").attr("value","Rs."+discountedprice+" per sq.ft.")
 				})
 
 				e.find(".calculate_price").click(function(){
@@ -1368,6 +1369,7 @@
 					var price = parseInt((discountedprice_value*100)/(100-discount_value) ).toString()
 
 					$(this).parent().find(".price_value").text("Rs."+price+" per sq.ft.")
+					$(this).parent().find(".text_selector_input").attr("value","Rs."+price+" per sq.ft.")
 				})
 
 				e.find(".calculate_discount").click(function(){
@@ -1381,6 +1383,8 @@
 					var discount = parseInt( ((price_value - discountedprice_value)*100)/price_value ).toString()
 
 					$(this).parent().find(".discount_value").text(discount+"%")
+					$(this).parent().find(".text_selector_input").attr("value",discount+"%")
+
 				})
 			}
 
